@@ -99,7 +99,7 @@ export function DashboardView({ onNavigate }: DashboardViewProps) {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.3, delay: i * 0.05 }}
               className={cn(
-                "glass-card glass-card-hover p-5 rounded-2xl flex flex-col justify-between border-slate-100",
+                "glass-card glass-card-hover p-5 rounded-2xl flex flex-col justify-between border-slate-100 scroll-3d-card",
                 stat.border
               )}
             >
