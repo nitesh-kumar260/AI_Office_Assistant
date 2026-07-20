@@ -312,3 +312,32 @@
 @utility depth-shadow-3d {
   box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.08), 0 10px 20px -5px rgba(0, 0, 0, 0.04);
 }
+
+@keyframes scan-laser {
+  0% {
+    top: 0%;
+  }
+  50% {
+    top: 100%;
+  }
+  100% {
+    top: 0%;
+  }
+}
+
+@utility animate-scan-laser {
+  animation: scan-laser 2.5s infinite linear;
+}
+
+@keyframes bounce-subtle {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-4px);
+  }
+}
+
+@utility animate-bounce-subtle {
+  animation: bounce-subtle 2s infinite ease-in-out;
+}

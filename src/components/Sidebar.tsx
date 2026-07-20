@@ -17,7 +17,9 @@ import {
   Building2,
   Database,
   LogIn,
-  X
+  X,
+  UploadCloud,
+  ScanLine
 } from "lucide-react"
 import { cn } from "@/lib/utils"
 
@@ -36,6 +38,9 @@ export type ViewType =
   | "workspace"
   | "rag-search"
   | "auth"
+  | "upload_doc"
+  | "extract_info"
+
 
 interface SidebarProps {
   currentView: ViewType
@@ -65,12 +70,16 @@ export function Sidebar({
     {
       title: "Legal & Document AI",
       items: [
+        { id: "upload_doc", label: "Document Vault", icon: UploadCloud, badge: "Db" },
+        { id: "extract_info", label: "Info Extractor", icon: ScanLine, badge: "OCR" },
         { id: "compare", label: "Doc Comparison", icon: GitCompare, badge: "Diff" },
         { id: "contracts", label: "Contract Digest", icon: FileCheck2, badge: "Risk" },
         { id: "signatures", label: "Digital Signatures", icon: PenTool, badge: "SHA" },
         { id: "ocr", label: "OCR Scanner", icon: Scan },
       ]
     },
+
+
     {
       title: "Automation & Enterprise",
       items: [

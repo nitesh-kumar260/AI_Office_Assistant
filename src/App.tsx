@@ -15,6 +15,8 @@ import { DigitalSignatureView } from "./components/views/DigitalSignatureView"
 import { TeamWorkspaceView } from "./components/views/TeamWorkspaceView"
 import { RAGSearchView } from "./components/views/RAGSearchView"
 import { AuthView } from "./components/views/AuthView"
+import { Upload_doc } from "./components/views/Upload_doc"
+import { Extract_Info } from "./components/views/Extract_Info"
 import { AuthProvider, useAuth } from "./context/AuthContext"
 import { Bell, Building2, LogIn, Menu } from "lucide-react"
 
@@ -64,10 +66,16 @@ function AppContent() {
         return <TeamWorkspaceView />
       case "rag-search":
         return <RAGSearchView />
+      case "upload_doc":
+        return <Upload_doc />
+      case "extract_info":
+        return <Extract_Info />
       default:
         return <DashboardView onNavigate={(view) => setCurrentView(view as ViewType)} />
     }
   }
+
+
 
   return (
     <div className="flex bg-slate-50 min-h-screen text-neutral-800 font-sans relative w-full max-w-full overflow-x-hidden scroll-3d-perspective">
