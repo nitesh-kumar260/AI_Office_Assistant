@@ -118,16 +118,16 @@ export function ContractSummarizationView() {
     <div className="space-y-8 max-w-7xl mx-auto pb-12">
       {/* Top Banner */}
       <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 p-6 rounded-3xl bg-gradient-to-r from-blue-900/10 via-indigo-900/5 to-slate-900/10 border border-blue-500/20 glass-panel">
-        <div className="flex items-center gap-4">
-          <div className="p-3.5 rounded-2xl bg-gradient-to-tr from-blue-600 to-indigo-600 text-white shadow-lg shadow-blue-500/30 preserve-3d animate-float-3d">
+        <div className="flex items-start gap-4 min-w-0">
+          <div className="p-3.5 rounded-2xl bg-gradient-to-tr from-blue-600 to-indigo-600 text-white shadow-lg shadow-blue-500/30 preserve-3d animate-float-3d shrink-0">
             <FileCheck2 className="h-7 w-7" />
           </div>
-          <div>
-            <div className="flex items-center gap-2">
-              <h1 className="text-2xl font-black tracking-tight text-slate-900 dark:text-white">
+          <div className="min-w-0">
+            <div className="flex flex-wrap items-center gap-2">
+              <h1 className="text-xl sm:text-2xl font-black tracking-tight text-slate-900 dark:text-white">
                 AI Contract Summarization & Risk Digest
               </h1>
-              <span className="px-2.5 py-0.5 rounded-full text-xs font-mono font-bold bg-blue-100 text-blue-700 border border-blue-200">
+              <span className="px-2.5 py-0.5 rounded-full text-xs font-mono font-bold bg-blue-100 text-blue-700 border border-blue-200 shrink-0">
                 Legal AI Engine
               </span>
             </div>
@@ -137,11 +137,11 @@ export function ContractSummarizationView() {
           </div>
         </div>
 
-        <div className="flex items-center gap-3">
+        <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 w-full sm:w-auto shrink-0">
           <select
             value={selectedContract}
             onChange={(e) => setSelectedContract(e.target.value)}
-            className="px-4 py-2.5 rounded-xl bg-white border border-slate-200 text-xs font-bold text-slate-800 shadow-sm outline-none cursor-pointer"
+            className="w-full sm:w-auto px-4 py-2.5 rounded-xl bg-white border border-slate-200 text-xs font-bold text-slate-800 shadow-sm outline-none cursor-pointer"
           >
             <option value="cloud_sla">Cloud SLA & Infrastructure Agreement</option>
             <option value="nda_enterprise">Mutual NDA & IP Protection</option>
@@ -149,9 +149,9 @@ export function ContractSummarizationView() {
 
           <button 
             onClick={() => alert("Exporting Executive Summary Deck (PDF)...")}
-            className="px-4 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-medium text-xs flex items-center gap-2 shadow-lg shadow-blue-500/20 transition-all cursor-pointer"
+            className="w-full sm:w-auto px-4 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-medium text-xs flex items-center justify-center gap-2 shadow-lg shadow-blue-500/20 transition-all cursor-pointer whitespace-nowrap"
           >
-            <Download className="h-4 w-4" /> Download Summary Deck
+            <Download className="h-4 w-4 shrink-0" /> Download Summary Deck
           </button>
         </div>
       </div>

@@ -43,16 +43,16 @@ export function AuthView({ onNavigateToDashboard }: AuthViewProps) {
       
       {/* Hero Header with 3D Float */}
       <div className="flex flex-col md:flex-row items-center justify-between gap-6 p-8 rounded-3xl bg-gradient-to-r from-purple-900/15 via-indigo-900/10 to-slate-900/15 border border-purple-500/30 glass-panel preserve-3d animate-float-3d">
-        <div className="flex items-center gap-4">
-          <div className="p-4 rounded-2xl bg-gradient-to-tr from-purple-600 via-indigo-600 to-cyan-500 text-white shadow-xl shadow-purple-500/30 preserve-3d">
+        <div className="flex items-start gap-4 min-w-0">
+          <div className="p-4 rounded-2xl bg-gradient-to-tr from-purple-600 via-indigo-600 to-cyan-500 text-white shadow-xl shadow-purple-500/30 preserve-3d shrink-0">
             <Terminal className="h-8 w-8 animate-pulse" />
           </div>
-          <div>
-            <div className="flex items-center gap-2">
-              <h1 className="text-3xl font-black tracking-tight text-slate-900 dark:text-white">
+          <div className="min-w-0">
+            <div className="flex flex-wrap items-center gap-2">
+              <h1 className="text-2xl sm:text-3xl font-black tracking-tight text-slate-900 dark:text-white">
                 Ornitech Authentication Portal
               </h1>
-              <span className="px-3 py-0.5 rounded-full text-xs font-mono font-bold bg-purple-100 text-purple-700 border border-purple-200">
+              <span className="px-3 py-0.5 rounded-full text-xs font-mono font-bold bg-purple-100 text-purple-700 border border-purple-200 shrink-0">
                 Client Ready 3D
               </span>
             </div>
@@ -63,17 +63,19 @@ export function AuthView({ onNavigateToDashboard }: AuthViewProps) {
         </div>
 
         {user && (
-          <div className="flex items-center gap-3 p-3.5 rounded-2xl bg-white border border-purple-200 shadow-sm font-mono text-xs">
-            <div className="w-8 h-8 rounded-xl bg-purple-600 text-white font-bold flex items-center justify-center">
-              {user.avatar}
-            </div>
-            <div>
-              <div className="font-bold text-slate-900">{user.name}</div>
-              <div className="text-[10px] text-purple-600 font-bold uppercase">{user.role} Active</div>
+          <div className="flex items-center justify-between sm:justify-start gap-3 p-3.5 rounded-2xl bg-white border border-purple-200 shadow-sm font-mono text-xs w-full sm:w-auto shrink-0">
+            <div className="flex items-center gap-3">
+              <div className="w-8 h-8 rounded-xl bg-purple-600 text-white font-bold flex items-center justify-center shrink-0">
+                {user.avatar}
+              </div>
+              <div>
+                <div className="font-bold text-slate-900">{user.name}</div>
+                <div className="text-[10px] text-purple-600 font-bold uppercase">{user.role} Active</div>
+              </div>
             </div>
             <button
               onClick={() => logout()}
-              className="ml-2 px-2.5 py-1 rounded-lg bg-slate-100 hover:bg-rose-50 text-slate-600 hover:text-rose-600 transition-colors font-sans text-xs cursor-pointer"
+              className="ml-2 px-2.5 py-1 rounded-lg bg-slate-100 hover:bg-rose-50 text-slate-600 hover:text-rose-600 transition-colors font-sans text-xs cursor-pointer whitespace-nowrap shrink-0"
             >
               Log Out
             </button>

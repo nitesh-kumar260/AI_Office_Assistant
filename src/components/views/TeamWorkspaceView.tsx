@@ -202,18 +202,18 @@ export function TeamWorkspaceView() {
           <table className="w-full text-left text-xs">
             <thead>
               <tr className="border-b border-slate-100 text-slate-400 font-mono uppercase text-[11px]">
-                <th className="pb-3 font-semibold">User Profile</th>
-                <th className="pb-3 font-semibold">Department</th>
-                <th className="pb-3 font-semibold">Role</th>
-                <th className="pb-3 font-semibold">Status</th>
-                <th className="pb-3 font-semibold">Last Active</th>
-                <th className="pb-3 font-semibold text-right">Actions</th>
+                <th className="pb-3 font-semibold min-w-[180px]">User Profile</th>
+                <th className="pb-3 font-semibold min-w-[150px]">Department</th>
+                <th className="pb-3 font-semibold min-w-[100px]">Role</th>
+                <th className="pb-3 font-semibold min-w-[80px]">Status</th>
+                <th className="pb-3 font-semibold min-w-[110px]">Last Active</th>
+                <th className="pb-3 font-semibold text-right min-w-[60px]">Actions</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-slate-100">
               {members.map((mem) => (
                 <tr key={mem.id} className="hover:bg-slate-50/70 transition-colors">
-                  <td className="py-4">
+                  <td className="py-4 min-w-[180px]">
                     <div className="flex items-center gap-3">
                       <div className="w-9 h-9 rounded-2xl bg-purple-600 text-white font-bold flex items-center justify-center text-xs shadow-md shadow-purple-500/20">
                         {mem.avatar}
@@ -224,21 +224,21 @@ export function TeamWorkspaceView() {
                       </div>
                     </div>
                   </td>
-                  <td className="py-4 font-medium text-slate-700">{mem.department}</td>
-                  <td className="py-4">
+                  <td className="py-4 font-medium text-slate-700 min-w-[150px]">{mem.department}</td>
+                  <td className="py-4 min-w-[100px]">
                     <span className={`px-2.5 py-1 rounded-full text-[10px] font-bold border uppercase ${roleColors[mem.role]}`}>
                       {mem.role}
                     </span>
                   </td>
-                  <td className="py-4">
+                  <td className="py-4 min-w-[80px]">
                     <span className={`px-2 py-0.5 rounded-md text-[10px] font-semibold ${
                       mem.status === "Active" ? "bg-emerald-50 text-emerald-700" : "bg-amber-50 text-amber-700"
                     }`}>
                       {mem.status}
                     </span>
                   </td>
-                  <td className="py-4 text-slate-500">{mem.lastActive}</td>
-                  <td className="py-4 text-right">
+                  <td className="py-4 text-slate-500 min-w-[110px]">{mem.lastActive}</td>
+                  <td className="py-4 text-right min-w-[60px]">
                     <button className="p-1.5 rounded-lg text-slate-400 hover:text-slate-800 hover:bg-slate-100 cursor-pointer">
                       <MoreVertical className="h-4 w-4" />
                     </button>
@@ -261,41 +261,41 @@ export function TeamWorkspaceView() {
           <table className="w-full text-left text-xs border border-slate-200 rounded-2xl overflow-hidden">
             <thead className="bg-slate-50 text-slate-600 font-mono uppercase text-[11px]">
               <tr>
-                <th className="p-3">Capability / Permission</th>
-                <th className="p-3 text-center">Admin</th>
-                <th className="p-3 text-center">Legal Counsel</th>
-                <th className="p-3 text-center">Executive</th>
-                <th className="p-3 text-center">Auditor</th>
+                <th className="p-3 min-w-[240px]">Capability / Permission</th>
+                <th className="p-3 text-center min-w-[80px]">Admin</th>
+                <th className="p-3 text-center min-w-[100px]">Legal Counsel</th>
+                <th className="p-3 text-center min-w-[90px]">Executive</th>
+                <th className="p-3 text-center min-w-[90px]">Auditor</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-slate-100 text-slate-800">
               <tr>
-                <td className="p-3 font-semibold">Compare Documents & Contract Diffing</td>
-                <td className="p-3 text-center text-emerald-600"><Check className="h-4 w-4 mx-auto" /></td>
-                <td className="p-3 text-center text-emerald-600"><Check className="h-4 w-4 mx-auto" /></td>
-                <td className="p-3 text-center text-emerald-600"><Check className="h-4 w-4 mx-auto" /></td>
-                <td className="p-3 text-center text-slate-300">—</td>
+                <td className="p-3 font-semibold min-w-[240px]">Compare Documents & Contract Diffing</td>
+                <td className="p-3 text-center text-emerald-600 min-w-[80px]"><Check className="h-4 w-4 mx-auto" /></td>
+                <td className="p-3 text-center text-emerald-600 min-w-[100px]"><Check className="h-4 w-4 mx-auto" /></td>
+                <td className="p-3 text-center text-emerald-600 min-w-[90px]"><Check className="h-4 w-4 mx-auto" /></td>
+                <td className="p-3 text-center text-slate-300 min-w-[90px]">—</td>
               </tr>
               <tr>
-                <td className="p-3 font-semibold">Apply Cryptographic Digital Signatures</td>
-                <td className="p-3 text-center text-emerald-600"><Check className="h-4 w-4 mx-auto" /></td>
-                <td className="p-3 text-center text-emerald-600"><Check className="h-4 w-4 mx-auto" /></td>
-                <td className="p-3 text-center text-slate-300">—</td>
-                <td className="p-3 text-center text-slate-300">—</td>
+                <td className="p-3 font-semibold min-w-[240px]">Apply Cryptographic Digital Signatures</td>
+                <td className="p-3 text-center text-emerald-600 min-w-[80px]"><Check className="h-4 w-4 mx-auto" /></td>
+                <td className="p-3 text-center text-emerald-600 min-w-[100px]"><Check className="h-4 w-4 mx-auto" /></td>
+                <td className="p-3 text-center text-slate-300 min-w-[90px]">—</td>
+                <td className="p-3 text-center text-slate-300 min-w-[90px]">—</td>
               </tr>
               <tr>
-                <td className="p-3 font-semibold">Generate Executive AI Reports</td>
-                <td className="p-3 text-center text-emerald-600"><Check className="h-4 w-4 mx-auto" /></td>
-                <td className="p-3 text-center text-slate-300">—</td>
-                <td className="p-3 text-center text-emerald-600"><Check className="h-4 w-4 mx-auto" /></td>
-                <td className="p-3 text-center text-emerald-600"><Check className="h-4 w-4 mx-auto" /></td>
+                <td className="p-3 font-semibold min-w-[240px]">Generate Executive AI Reports</td>
+                <td className="p-3 text-center text-emerald-600 min-w-[80px]"><Check className="h-4 w-4 mx-auto" /></td>
+                <td className="p-3 text-center text-slate-300 min-w-[100px]">—</td>
+                <td className="p-3 text-center text-emerald-600 min-w-[90px]"><Check className="h-4 w-4 mx-auto" /></td>
+                <td className="p-3 text-center text-emerald-600 min-w-[90px]"><Check className="h-4 w-4 mx-auto" /></td>
               </tr>
               <tr>
-                <td className="p-3 font-semibold">Manage Enterprise Admin Settings & Model Switcher</td>
-                <td className="p-3 text-center text-emerald-600"><Check className="h-4 w-4 mx-auto" /></td>
-                <td className="p-3 text-center text-slate-300">—</td>
-                <td className="p-3 text-center text-slate-300">—</td>
-                <td className="p-3 text-center text-slate-300">—</td>
+                <td className="p-3 font-semibold min-w-[240px]">Manage Enterprise Admin Settings & Model Switcher</td>
+                <td className="p-3 text-center text-emerald-600 min-w-[80px]"><Check className="h-4 w-4 mx-auto" /></td>
+                <td className="p-3 text-center text-slate-300 min-w-[100px]">—</td>
+                <td className="p-3 text-center text-slate-300 min-w-[90px]">—</td>
+                <td className="p-3 text-center text-slate-300 min-w-[90px]">—</td>
               </tr>
             </tbody>
           </table>

@@ -378,23 +378,23 @@ export function Upload_doc() {
                     key={doc._id}
                     className="p-5 rounded-2xl border border-slate-150/80 hover:border-purple-300 hover:shadow-md transition-all bg-white relative group"
                   >
-                    <div className="flex flex-col sm:flex-row items-start justify-between gap-4">
+                    <div className="flex flex-col sm:flex-row items-start justify-between gap-4 min-w-0">
                       
-                      <div className="flex items-start gap-3.5">
+                      <div className="flex items-start gap-3.5 min-w-0 flex-1 w-full">
                         <div className="p-3 rounded-xl bg-indigo-50 text-indigo-600 shrink-0">
                           <FileText className="h-5 w-5" />
                         </div>
-                        <div className="space-y-1">
-                          <h4 className="font-bold text-slate-800 text-sm flex items-center gap-2">
-                            {doc.name}
+                        <div className="space-y-1 min-w-0 flex-1">
+                          <h4 className="font-bold text-slate-800 text-sm flex flex-wrap items-center gap-2 pr-2">
+                            <span className="break-all font-semibold">{doc.name}</span>
                             {doc.status === "scanning" && (
-                              <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-amber-50 text-amber-700 border border-amber-100">
+                              <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-amber-50 text-amber-700 border border-amber-100 shrink-0">
                                 <RefreshCw className="h-2.5 w-2.5 animate-spin" />
                                 OCR Scan
                               </span>
                             )}
                             {doc.status === "completed" && (
-                              <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-emerald-50 text-emerald-700 border border-emerald-100">
+                              <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-emerald-50 text-emerald-700 border border-emerald-100 shrink-0">
                                 <CheckCircle2 className="h-2.5 w-2.5" />
                                 Active
                               </span>
@@ -404,21 +404,21 @@ export function Upload_doc() {
                             {formatBytes(doc.sizeBytes)} • {new Date(doc.createdAt).toLocaleDateString()}
                           </p>
                           {doc.summary && (
-                            <p className="text-xs text-slate-500 mt-2 bg-slate-50/80 p-2.5 rounded-xl border border-slate-100 italic leading-relaxed">
+                            <p className="text-xs text-slate-500 mt-2 bg-slate-50/80 p-2.5 rounded-xl border border-slate-100 italic leading-relaxed break-words">
                               {doc.summary}
                             </p>
                           )}
 
                           {doc.signees.length > 0 && (
-                            <div className="flex flex-wrap items-center gap-2 mt-3.5 pt-2 border-t border-slate-100/70">
-                              <span className="text-[10px] font-black uppercase tracking-wider text-slate-400 flex items-center gap-1">
+                            <div className="flex flex-wrap items-center gap-1.5 mt-3.5 pt-2 border-t border-slate-100/70 max-w-full">
+                              <span className="text-[10px] font-black uppercase tracking-wider text-slate-400 flex items-center gap-1 shrink-0">
                                 <ShieldCheck className="h-3 w-3 text-purple-500" />
                                 Signatures:
                               </span>
                               {doc.signees.map((sig, sIdx) => (
                                 <span 
                                   key={sIdx}
-                                  className={`text-[10px] font-bold px-2 py-0.5 rounded-full border ${
+                                  className={`text-[10px] font-bold px-2 py-0.5 rounded-full border truncate max-w-[140px] ${
                                     sig.signed 
                                       ? "bg-purple-50 text-purple-700 border-purple-100" 
                                       : "bg-slate-50 text-slate-500 border-slate-200/80"

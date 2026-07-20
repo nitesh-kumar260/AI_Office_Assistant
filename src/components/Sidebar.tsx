@@ -106,18 +106,18 @@ export function Sidebar({
       {isMobileOpen && (
         <div 
           onClick={() => setIsMobileOpen?.(false)}
-          className="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-40 md:hidden animate-in fade-in duration-200"
+          className="fixed inset-0 bg-slate-900/60 backdrop-blur-md z-60 md:hidden animate-in fade-in duration-200"
         />
       )}
 
       <aside 
         className={cn(
-          "glass border-r border-slate-200/85 h-screen sticky top-0 flex flex-col transition-all duration-300 z-50 shrink-0",
+          "border-r border-slate-200/85 h-screen sticky top-0 flex flex-col transition-all duration-300 shrink-0",
           // Desktop sizing
-          "hidden md:flex",
+          "hidden md:flex glass z-30",
           isCollapsed ? "w-20" : "w-64",
           // Mobile Drawer Sizing
-          isMobileOpen && "fixed inset-y-0 left-0 flex w-72 bg-white/95 dark:bg-slate-900/95 shadow-2xl z-50"
+          isMobileOpen && "fixed inset-y-0 left-0 flex w-72 bg-white dark:bg-slate-900 shadow-2xl z-70 border-r border-slate-200 max-w-[85vw]"
         )}
       >
         {/* Brand Header */}
