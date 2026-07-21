@@ -72,11 +72,11 @@ export function Extract_Info() {
         {
           _id: "mock-ext-2",
           documentType: "pan",
-          fileName: "jeel_khunt_pan_scan.jpg",
+          fileName: "ravi_pan_scan.jpg",
           extractedData: {
             panNumber: "BHPQK1294F",
-            fullName: "JEEL KHUNT",
-            fatherName: "MANSUKHBHAI KHUNT",
+            fullName: "Ravi",
+            fatherName: "Dharmesh",
             dateOfBirth: "2001-05-14",
             signaturePresent: "Verified"
           },
@@ -85,10 +85,10 @@ export function Extract_Info() {
         {
           _id: "mock-ext-3",
           documentType: "aadhaar",
-          fileName: "aadhaar_front_back_crop.png",
+          fileName: "ravi_aadhaar_scan.png",
           extractedData: {
             aadhaarNumber: "8812 4310 9942",
-            fullName: "Jeel Mansukhbhai Khunt",
+            fullName: "Ravi",
             gender: "Male",
             dateOfBirth: "2001-05-14",
             address: "Ornitech Labs, G-12, Sector V, Salt Lake, Kolkata, West Bengal - 700091"
@@ -361,8 +361,8 @@ export function Extract_Info() {
               key={type}
               onClick={() => setActiveType(type)}
               className={`p-5 rounded-2xl border transition-all text-left flex flex-col justify-between h-28 cursor-pointer relative overflow-hidden group ${isActive
-                  ? `border-purple-600 shadow-md ring-2 ring-purple-500/10`
-                  : "border-slate-200 bg-white hover:border-purple-300 hover:shadow"
+                ? `border-purple-600 shadow-md ring-2 ring-purple-500/10`
+                : "border-slate-200 bg-white hover:border-purple-300 hover:shadow"
                 }`}
             >
               {isActive && (
@@ -394,8 +394,8 @@ export function Extract_Info() {
             onDragLeave={handleDrag}
             onDrop={handleDrop}
             className={`p-8 rounded-3xl border-2 border-dashed transition-all relative overflow-hidden flex flex-col items-center justify-center min-h-[280px] text-center bg-white shadow-sm ${dragActive
-                ? "border-purple-600 bg-purple-50/30 shadow-lg"
-                : "border-slate-300 hover:border-purple-400"
+              ? "border-purple-600 bg-purple-50/30 shadow-lg"
+              : "border-slate-300 hover:border-purple-400"
               }`}
           >
             <input
@@ -467,8 +467,8 @@ export function Extract_Info() {
                     key={item._id}
                     onClick={() => setSelectedItem(item)}
                     className={`p-3 rounded-xl border flex items-center justify-between gap-2 cursor-pointer transition-all ${selectedItem?._id === item._id
-                        ? "bg-purple-50/55 border-purple-200"
-                        : "border-slate-100 hover:border-purple-200 hover:bg-slate-50/50 bg-white"
+                      ? "bg-purple-50/55 border-purple-200"
+                      : "border-slate-100 hover:border-purple-200 hover:bg-slate-50/50 bg-white"
                       }`}
                   >
                     <div className="flex items-center gap-2.5 min-w-0">
