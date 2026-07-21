@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useState, useEffect, useRef } from "react"
 import { Sidebar } from "./components/Sidebar"
 import type { ViewType } from "./components/Sidebar"
 import { DashboardView } from "./components/views/DashboardView"
@@ -17,14 +17,35 @@ import { RAGSearchView } from "./components/views/RAGSearchView"
 import { AuthView } from "./components/views/AuthView"
 import { Upload_doc } from "./components/views/Upload_doc"
 import { Extract_Info } from "./components/views/Extract_Info"
+import { DocChatbotDrawer } from "./components/DocChatbotDrawer"
 import { AuthProvider, useAuth } from "./context/AuthContext"
-import { Bell, Building2, LogIn, Menu } from "lucide-react"
+import { Bell, Building2, LogIn, Menu, Bot, Sparkles } from "lucide-react"
+import { cn } from "@/lib/utils"
 
 function AppContent() {
   const [currentView, setCurrentView] = useState<ViewType>("dashboard")
   const [initialSelectedDoc, setInitialSelectedDoc] = useState<string | null>(null)
   const [isMobileOpen, setIsMobileOpen] = useState(false)
+  const [isChatbotOpen, setIsChatbotOpen] = useState(false)
+  const [isHeaderScrolled, setIsHeaderScrolled] = useState(false)
+  const mainRef = useRef<HTMLDivElement>(null)
   const { user, workspace } = useAuth()
+
+  useEffect(() => {
+    const mainEl = mainRef.current
+    if (!mainEl) return
+
+    const handleScroll = () => {
+      if (mainEl.scrollTop > 10) {
+        setIsHeaderScrolled(true)
+      } else {
+        setIsHeaderScrolled(false)
+      }
+    }
+
+    mainEl.addEventListener("scroll", handleScroll)
+    return () => mainEl.removeEventListener("scroll", handleScroll)
+  }, [])
 
   const handleSelectDocForChat = (docName: string) => {
     setInitialSelectedDoc(docName)
@@ -75,8 +96,6 @@ function AppContent() {
     }
   }
 
-
-
   return (
     <div className="flex bg-slate-50 min-h-screen text-neutral-800 font-sans relative w-full max-w-full overflow-x-hidden scroll-3d-perspective">
       {/* Background visual glow accents */}
@@ -95,7 +114,12 @@ function AppContent() {
       <div className="flex-1 flex flex-col min-w-0 max-w-full overflow-x-hidden">
         
         {/* Top Control Bar Header */}
-        <header className="h-16 px-4 md:px-8 border-b border-slate-200/85 flex items-center justify-between sticky top-0 bg-slate-50/80 backdrop-blur-md z-40">
+        <header className={cn(
+          "h-16 px-4 md:px-8 flex items-center justify-between sticky top-0 z-40 transition-all duration-300",
+          isHeaderScrolled 
+            ? "bg-white/90 backdrop-blur-lg border-b border-purple-200/80 shadow-md shadow-purple-500/5" 
+            : "bg-slate-50/80 backdrop-blur-md border-b border-slate-200/85"
+        )}>
           
           <div className="flex items-center gap-2.5">
             {/* Mobile Hamburger Trigger */}
@@ -118,6 +142,18 @@ function AppContent() {
 
           {/* User Profile & Actions Bar */}
           <div className="flex items-center gap-2 sm:gap-4">
+            
+            {/* AI Document Chatbot Navbar Trigger */}
+            <button 
+              onClick={() => setIsChatbotOpen(true)}
+              className="px-3 py-1.5 rounded-xl bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 text-white text-xs font-semibold shadow-md shadow-purple-500/20 flex items-center gap-1.5 cursor-pointer transition-all hover:scale-105 active:scale-95"
+              title="Open AI Chatbot for Documents"
+            >
+              <Bot className="h-4 w-4 animate-bounce-subtle" />
+              <span className="hidden sm:inline">AI Doc Chatbot</span>
+              <Sparkles className="h-3 w-3 text-purple-200" />
+            </button>
+
             <button className="p-2 rounded-xl text-neutral-500 hover:text-neutral-900 hover:bg-slate-100 transition-colors relative cursor-pointer">
               <span className="absolute top-1.5 right-1.5 w-1.5 h-1.5 bg-purple-500 rounded-full animate-ping" />
               <span className="absolute top-1.5 right-1.5 w-1.5 h-1.5 bg-purple-500 rounded-full" />
@@ -158,10 +194,19 @@ function AppContent() {
         </header>
 
         {/* View Workspace wrapper */}
-        <main className="flex-1 overflow-y-auto px-4 md:px-8 py-4 md:py-8 w-full max-w-full overflow-x-hidden scroll-3d-perspective">
+        <main 
+          ref={mainRef}
+          className="flex-1 overflow-y-auto px-4 md:px-8 py-4 md:py-8 w-full max-w-full overflow-x-hidden scroll-3d-perspective"
+        >
           {renderActiveView()}
         </main>
       </div>
+
+      {/* Global AI Document Chatbot Sliding Drawer */}
+      <DocChatbotDrawer 
+        isOpen={isChatbotOpen} 
+        onClose={() => setIsChatbotOpen(false)} 
+      />
     </div>
   )
 }
