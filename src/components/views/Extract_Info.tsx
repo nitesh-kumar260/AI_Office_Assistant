@@ -1,14 +1,14 @@
 import { useState, useEffect } from "react";
-import { 
-  ScanLine, 
-  Trash2, 
-  CheckCircle2, 
-  RefreshCw, 
-  FileSpreadsheet, 
-  UserCheck, 
-  CreditCard, 
-  Building2, 
-  Copy, 
+import {
+  ScanLine,
+  Trash2,
+  CheckCircle2,
+  RefreshCw,
+  FileSpreadsheet,
+  UserCheck,
+  CreditCard,
+  Building2,
+  Copy,
   Database
 } from "lucide-react";
 
@@ -138,7 +138,7 @@ export function Extract_Info() {
     e.preventDefault();
     e.stopPropagation();
     setDragActive(false);
-    
+
     if (e.dataTransfer.files && e.dataTransfer.files[0]) {
       processFile(e.dataTransfer.files[0]);
     }
@@ -153,7 +153,7 @@ export function Extract_Info() {
   // Simulated OCR parsing logic based on Document Type
   const getMockExtractedFields = (type: DocType, name: string): Record<string, string> => {
     const formattedName = name.split(".")[0].replace(/[_-]/g, " ").toUpperCase();
-    
+
     switch (type) {
       case "invoice":
         return {
@@ -171,15 +171,15 @@ export function Extract_Info() {
       case "pan":
         return {
           panNumber: `${Math.random().toString(36).substring(2, 7).toUpperCase()}${Math.floor(1000 + Math.random() * 9000)}${Math.random().toString(36).substring(2, 3).toUpperCase()}`,
-          fullName: "JEEL MANSUKHBHAI KHUNT",
-          fatherName: "MANSUKHBHAI KHUNT",
+          fullName: "Ravi",
+          fatherName: "Dharmesh",
           dateOfBirth: "2001-05-14",
           signaturePresent: "Verified"
         };
       case "aadhaar":
         return {
           aadhaarNumber: `${Math.floor(1000 + Math.random() * 9000)} ${Math.floor(1000 + Math.random() * 9000)} ${Math.floor(1000 + Math.random() * 9000)}`,
-          fullName: "Jeel Mansukhbhai Khunt",
+          fullName: "Ravi",
           gender: "Male",
           dateOfBirth: "2001-05-14",
           address: "G-12, Salt Lake Sector V, Kolkata, West Bengal - 700091"
@@ -336,7 +336,7 @@ export function Extract_Info() {
           </div>
         </div>
 
-        <button 
+        <button
           onClick={() => fetchHistory()}
           className="p-2.5 rounded-xl border border-slate-200 hover:bg-slate-100 text-slate-600 hover:text-slate-900 transition-all flex items-center gap-2 cursor-pointer bg-white"
         >
@@ -360,19 +360,17 @@ export function Extract_Info() {
             <button
               key={type}
               onClick={() => setActiveType(type)}
-              className={`p-5 rounded-2xl border transition-all text-left flex flex-col justify-between h-28 cursor-pointer relative overflow-hidden group ${
-                isActive 
-                  ? `border-purple-600 shadow-md ring-2 ring-purple-500/10` 
+              className={`p-5 rounded-2xl border transition-all text-left flex flex-col justify-between h-28 cursor-pointer relative overflow-hidden group ${isActive
+                  ? `border-purple-600 shadow-md ring-2 ring-purple-500/10`
                   : "border-slate-200 bg-white hover:border-purple-300 hover:shadow"
-              }`}
+                }`}
             >
               {isActive && (
                 <div className={`absolute top-0 right-0 w-24 h-24 bg-gradient-to-tr ${getDocTypeColor(type).split(" ")[0]} ${getDocTypeColor(type).split(" ")[1]} opacity-5 rounded-bl-full pointer-events-none`} />
               )}
-              
-              <div className={`p-2.5 rounded-xl border shrink-0 ${
-                isActive ? getDocTypeColor(type).split(" ").slice(2).join(" ") : "bg-slate-50 border-slate-100 text-slate-500 group-hover:text-purple-600 transition-colors"
-              }`}>
+
+              <div className={`p-2.5 rounded-xl border shrink-0 ${isActive ? getDocTypeColor(type).split(" ").slice(2).join(" ") : "bg-slate-50 border-slate-100 text-slate-500 group-hover:text-purple-600 transition-colors"
+                }`}>
                 {getDocTypeIcon(type)}
               </div>
 
@@ -387,22 +385,21 @@ export function Extract_Info() {
 
       {/* Main Grid View */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-        
+
         {/* Upload drop panel */}
         <div className="lg:col-span-1 space-y-6">
-          <div 
+          <div
             onDragEnter={handleDrag}
             onDragOver={handleDrag}
             onDragLeave={handleDrag}
             onDrop={handleDrop}
-            className={`p-8 rounded-3xl border-2 border-dashed transition-all relative overflow-hidden flex flex-col items-center justify-center min-h-[280px] text-center bg-white shadow-sm ${
-              dragActive 
-                ? "border-purple-600 bg-purple-50/30 shadow-lg" 
+            className={`p-8 rounded-3xl border-2 border-dashed transition-all relative overflow-hidden flex flex-col items-center justify-center min-h-[280px] text-center bg-white shadow-sm ${dragActive
+                ? "border-purple-600 bg-purple-50/30 shadow-lg"
                 : "border-slate-300 hover:border-purple-400"
-            }`}
+              }`}
           >
-            <input 
-              type="file" 
+            <input
+              type="file"
               id="extractor-file-upload"
               accept="image/*,.pdf"
               onChange={handleFileInput}
@@ -466,19 +463,17 @@ export function Extract_Info() {
             ) : (
               <div className="space-y-2 max-h-[260px] overflow-y-auto pr-1">
                 {history.map((item) => (
-                  <div 
+                  <div
                     key={item._id}
                     onClick={() => setSelectedItem(item)}
-                    className={`p-3 rounded-xl border flex items-center justify-between gap-2 cursor-pointer transition-all ${
-                      selectedItem?._id === item._id 
-                        ? "bg-purple-50/55 border-purple-200" 
+                    className={`p-3 rounded-xl border flex items-center justify-between gap-2 cursor-pointer transition-all ${selectedItem?._id === item._id
+                        ? "bg-purple-50/55 border-purple-200"
                         : "border-slate-100 hover:border-purple-200 hover:bg-slate-50/50 bg-white"
-                    }`}
+                      }`}
                   >
                     <div className="flex items-center gap-2.5 min-w-0">
-                      <div className={`p-1.5 rounded-lg border text-xs shrink-0 ${
-                        getDocTypeColor(item.documentType).split(" ").slice(2).join(" ")
-                      }`}>
+                      <div className={`p-1.5 rounded-lg border text-xs shrink-0 ${getDocTypeColor(item.documentType).split(" ").slice(2).join(" ")
+                        }`}>
                         {getDocTypeIcon(item.documentType)}
                       </div>
                       <div className="min-w-0">
@@ -510,15 +505,14 @@ export function Extract_Info() {
         {/* Extracted Details Results Panel */}
         <div className="lg:col-span-2 space-y-6">
           <div className="glass-panel p-6 rounded-3xl bg-white border border-slate-200/80 shadow-sm min-h-[460px] flex flex-col">
-            
+
             {selectedItem ? (
               <div className="flex-1 flex flex-col">
                 {/* Panel Header */}
                 <div className="flex flex-wrap items-center justify-between gap-3 pb-4 border-b border-slate-100 mb-6">
                   <div className="flex items-center gap-3">
-                    <div className={`p-2.5 rounded-xl border text-sm ${
-                      getDocTypeColor(selectedItem.documentType).split(" ").slice(2).join(" ")
-                    }`}>
+                    <div className={`p-2.5 rounded-xl border text-sm ${getDocTypeColor(selectedItem.documentType).split(" ").slice(2).join(" ")
+                      }`}>
                       {getDocTypeIcon(selectedItem.documentType)}
                     </div>
                     <div>
@@ -530,7 +524,7 @@ export function Extract_Info() {
                       </p>
                     </div>
                   </div>
-                  
+
                   <span className="text-[10px] font-mono font-bold bg-emerald-50 text-emerald-700 border border-emerald-100 px-3 py-1 rounded-full flex items-center gap-1.5">
                     <CheckCircle2 className="h-3.5 w-3.5 text-emerald-600" />
                     Extraction Validated
@@ -540,8 +534,8 @@ export function Extract_Info() {
                 {/* Grid Fields List */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 flex-1">
                   {Object.entries(selectedItem.extractedData).map(([key, val]) => (
-                    <div 
-                      key={key} 
+                    <div
+                      key={key}
                       className="p-4 rounded-2xl bg-slate-50/70 border border-slate-100 hover:border-purple-200 hover:bg-white transition-all flex items-center justify-between group"
                     >
                       <div className="space-y-1">
