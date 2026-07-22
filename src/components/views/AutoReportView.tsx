@@ -258,8 +258,8 @@ export function AutoReportView() {
                 <PieChart className="h-4 w-4 text-emerald-600" /> Monthly Document Throughput vs Risk Mitigation (2026)
               </h3>
 
-              <div className="h-72 w-full pt-2">
-                <ResponsiveContainer width="100%" height="100%">
+              <div className="h-72 w-full pt-2 min-h-[250px] relative">
+                <ResponsiveContainer width="100%" height="100%" minHeight={250}>
                   <AreaChart data={analyticsData} margin={{ top: 10, right: 30, left: 0, bottom: 0 }}>
                     <defs>
                       <linearGradient id="colorDocs" x1="0" y1="0" x2="0" y2="1">

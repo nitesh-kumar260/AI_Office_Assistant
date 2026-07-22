@@ -97,7 +97,7 @@ function AppContent() {
   }
 
   return (
-    <div className="flex bg-slate-50 min-h-screen text-neutral-800 font-sans relative w-full max-w-full overflow-x-hidden scroll-3d-perspective">
+    <div className="flex bg-slate-50 h-screen text-neutral-800 font-sans relative w-full max-w-full overflow-hidden scroll-3d-perspective">
       {/* Background visual glow accents */}
       <div className="absolute top-0 right-1/4 w-96 h-96 bg-purple-500/5 rounded-full blur-[120px] pointer-events-none" />
       <div className="absolute bottom-0 left-1/4 w-96 h-96 bg-cyan-500/5 rounded-full blur-[120px] pointer-events-none" />
@@ -111,11 +111,11 @@ function AppContent() {
       />
 
       {/* Main Container */}
-      <div className="flex-1 flex flex-col min-w-0 max-w-full overflow-x-hidden">
+      <div className="flex-1 flex flex-col min-w-0 max-w-full overflow-hidden h-full">
         
         {/* Top Control Bar Header */}
         <header className={cn(
-          "h-16 px-4 md:px-8 flex items-center justify-between sticky top-0 z-40 transition-all duration-300",
+          "h-16 px-4 md:px-8 flex items-center justify-between sticky top-0 z-40 transition-all duration-300 shrink-0",
           isHeaderScrolled 
             ? "bg-white/90 backdrop-blur-lg border-b border-purple-200/80 shadow-md shadow-purple-500/5" 
             : "bg-slate-50/80 backdrop-blur-md border-b border-slate-200/85"

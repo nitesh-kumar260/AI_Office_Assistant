@@ -202,21 +202,21 @@ export function RAGSearchView() {
 
         {chunks.map((chunk) => (
           <div key={chunk.id} className="p-6 rounded-3xl bg-white border border-slate-200 shadow-sm space-y-4 hover:border-cyan-300 transition-all card-3d-cyan">
-            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 pb-3 border-b border-slate-100">
-              <div className="flex items-center gap-3">
-                <span className="p-2 rounded-xl bg-cyan-50 text-cyan-700 font-mono text-xs font-bold border border-cyan-200">
+            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 pb-3 border-b border-slate-100 min-w-0">
+              <div className="flex items-start sm:items-center gap-3 min-w-0 flex-1 w-full">
+                <span className="p-2 rounded-xl bg-cyan-50 text-cyan-700 font-mono text-xs font-bold border border-cyan-200 shrink-0">
                   {chunk.id}
                 </span>
-                <div>
-                  <h3 className="font-bold text-sm text-slate-900 flex items-center gap-2">
-                    <FileText className="h-4 w-4 text-slate-400" /> {chunk.docTitle}
+                <div className="min-w-0 flex-1">
+                  <h3 className="font-bold text-sm text-slate-900 flex items-center gap-2 break-all pr-2">
+                    <FileText className="h-4 w-4 text-slate-400 shrink-0" /> {chunk.docTitle}
                   </h3>
                   <span className="text-[11px] text-slate-400">Page {chunk.pageNumber}</span>
                 </div>
               </div>
 
-              <div className="flex items-center gap-3 font-mono">
-                <div className="px-3 py-1 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-700 text-xs font-bold">
+              <div className="flex flex-wrap items-center gap-3 font-mono shrink-0 mt-2 sm:mt-0">
+                <div className="px-3 py-1 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-700 text-[10px] sm:text-xs font-bold">
                   {chunk.similarityScore}% Match Score
                 </div>
                 <div className="text-[11px] text-slate-400">

@@ -137,12 +137,12 @@ export function DocumentComparisonView() {
             </span>
           </div>
 
-          <div className="flex items-center gap-3 p-3 rounded-2xl bg-slate-50 border border-slate-200">
-            <div className="p-2 rounded-xl bg-purple-100 text-purple-600 font-bold text-xs">PDF</div>
+          <div className="flex items-center gap-3 p-3 rounded-2xl bg-slate-50 border border-slate-200 min-w-0">
+            <div className="p-2 rounded-xl bg-purple-100 text-purple-600 font-bold text-xs shrink-0">PDF</div>
             <select 
               value={docA}
               onChange={(e) => setDocA(e.target.value)}
-              className="flex-1 bg-transparent text-sm font-semibold text-slate-800 outline-none cursor-pointer"
+              className="flex-1 min-w-0 w-full bg-transparent text-xs sm:text-sm font-semibold text-slate-800 outline-none cursor-pointer"
             >
               <option value="MSA_Vendor_Agreement_v1.0.pdf">MSA_Vendor_Agreement_v1.0.pdf (Jan 2024)</option>
               <option value="Employment_Contract_2024.pdf">Employment_Contract_2024.pdf</option>
@@ -159,7 +159,7 @@ export function DocumentComparisonView() {
         </div>
 
         {/* Document B Card */}
-        <div className="p-6 rounded-3xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm hover:shadow-md transition-all card-3d-cyan">
+        <div className="p-6 rounded-3xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm hover:shadow-md transition-all card-3d-cyan min-w-0">
           <div className="flex items-center justify-between mb-4">
             <span className="text-xs font-mono font-bold uppercase tracking-wider text-cyan-600 flex items-center gap-1.5">
               <FileText className="h-4 w-4" /> Revision Document (v2.1)
@@ -169,12 +169,12 @@ export function DocumentComparisonView() {
             </span>
           </div>
 
-          <div className="flex items-center gap-3 p-3 rounded-2xl bg-slate-50 border border-slate-200">
-            <div className="p-2 rounded-xl bg-cyan-100 text-cyan-700 font-bold text-xs">PDF</div>
+          <div className="flex items-center gap-3 p-3 rounded-2xl bg-slate-50 border border-slate-200 min-w-0">
+            <div className="p-2 rounded-xl bg-cyan-100 text-cyan-700 font-bold text-xs shrink-0">PDF</div>
             <select 
               value={docB}
               onChange={(e) => setDocB(e.target.value)}
-              className="flex-1 bg-transparent text-sm font-semibold text-slate-800 outline-none cursor-pointer"
+              className="flex-1 min-w-0 w-full bg-transparent text-xs sm:text-sm font-semibold text-slate-800 outline-none cursor-pointer"
             >
               <option value="MSA_Vendor_Agreement_v2.1_Updated.pdf">MSA_Vendor_Agreement_v2.1_Updated.pdf (Jul 2026)</option>
               <option value="Employment_Contract_2026_Proposed.pdf">Employment_Contract_2026_Proposed.pdf</option>

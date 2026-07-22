@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useState, useEffect, useRef } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { Scan, Upload, FileText, Check, Copy, RefreshCw, Layers } from "lucide-react"
 import { cn } from "@/lib/utils"
@@ -22,17 +22,33 @@ export function OCRView() {
   const [copied, setCopied] = useState(false)
   const [indexed, setIndexed] = useState(false)
 
+  const uploadIntervalRef = useRef<any>(null)
+  const scanIntervalRef = useRef<any>(null)
+  const copyTimeoutRef = useRef<any>(null)
+
+  useEffect(() => {
+    return () => {
+      if (uploadIntervalRef.current) clearInterval(uploadIntervalRef.current)
+      if (scanIntervalRef.current) clearInterval(scanIntervalRef.current)
+      if (copyTimeoutRef.current) clearTimeout(copyTimeoutRef.current)
+    }
+  }, [])
+
   const handleSelectMockFile = (doc: typeof mockDocs[0]) => {
+    if (uploadIntervalRef.current) clearInterval(uploadIntervalRef.current)
+    if (scanIntervalRef.current) clearInterval(scanIntervalRef.current)
+
     setSelectedFile(doc)
     setStatus("uploading")
     setProgress(0)
     setIndexed(false)
     
     // Simulate upload progress
-    const uploadInterval = setInterval(() => {
+    const interval = setInterval(() => {
       setProgress((prev) => {
         if (prev >= 100) {
-          clearInterval(uploadInterval)
+          clearInterval(interval)
+          uploadIntervalRef.current = null
           setStatus("scanning")
           triggerScanning(doc)
           return 100
@@ -40,16 +56,18 @@ export function OCRView() {
         return prev + 20
       })
     }, 150)
+    uploadIntervalRef.current = interval
   }
 
   const triggerScanning = (doc: typeof mockDocs[0]) => {
     setProgress(0)
     
     // Simulate OCR scanning progression
-    const scanInterval = setInterval(() => {
+    const interval = setInterval(() => {
       setProgress((prev) => {
         if (prev >= 100) {
-          clearInterval(scanInterval)
+          clearInterval(interval)
+          scanIntervalRef.current = null
           setStatus("completed")
           setEditableText(doc.text)
           return 100
@@ -57,12 +75,17 @@ export function OCRView() {
         return prev + 10
       })
     }, 250)
+    scanIntervalRef.current = interval
   }
 
   const handleCopy = () => {
     navigator.clipboard.writeText(editableText)
     setCopied(true)
-    setTimeout(() => setCopied(false), 2000)
+    if (copyTimeoutRef.current) clearTimeout(copyTimeoutRef.current)
+    copyTimeoutRef.current = setTimeout(() => {
+      setCopied(false)
+      copyTimeoutRef.current = null
+    }, 2000)
   }
 
   const handleIndexFile = () => {

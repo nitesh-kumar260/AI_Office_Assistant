@@ -111,9 +111,9 @@ export function ChatView({ initialSelectedDoc, clearInitialDoc }: ChatViewProps)
   }
 
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-4 gap-6 h-[calc(100vh-140px)]">
+    <div className="grid grid-cols-1 lg:grid-cols-4 gap-6 h-auto lg:h-[calc(100vh-140px)]">
       {/* Document Context Sidebar */}
-      <div className="glass-panel p-5 rounded-2xl border-slate-200/80 flex flex-col justify-between h-full lg:col-span-1">
+      <div className="glass-panel p-5 rounded-2xl border-slate-200/80 flex flex-col justify-between h-auto lg:h-full lg:col-span-1 gap-6">
         <div className="space-y-4">
           <div>
             <h3 className="font-bold text-neutral-850 text-sm tracking-wide uppercase font-mono">
@@ -155,7 +155,7 @@ export function ChatView({ initialSelectedDoc, clearInitialDoc }: ChatViewProps)
           </div>
         </div>
 
-        <div className="p-3 rounded-xl bg-purple-50 border border-purple-100 text-[10px] text-purple-600 leading-normal font-mono">
+        <div className="p-3 rounded-xl bg-purple-50 border border-purple-100 text-[10px] text-purple-600 leading-normal font-mono mt-4 lg:mt-0">
           Model: Gemini-2.5-Pro-Tuned
           <br />
           Tokens loaded: ~4.2k
@@ -163,7 +163,7 @@ export function ChatView({ initialSelectedDoc, clearInitialDoc }: ChatViewProps)
       </div>
 
       {/* Chat Workspace */}
-      <div className="glass-panel rounded-2xl border-slate-200/80 flex flex-col h-full lg:col-span-3 overflow-hidden">
+      <div className="glass-panel rounded-2xl border-slate-200/80 flex flex-col h-[480px] sm:h-[580px] lg:h-full lg:col-span-3 overflow-hidden">
         {/* Chat Header */}
         <div className="px-6 py-4 border-b border-slate-200 flex items-center justify-between bg-slate-100/40 shrink-0">
           <div className="flex items-center gap-3">
@@ -248,12 +248,12 @@ export function ChatView({ initialSelectedDoc, clearInitialDoc }: ChatViewProps)
                 : "Please select a document context from the left panel..."
             }
             disabled={selectedDocs.length === 0}
-            className="flex-1 px-4 py-3 rounded-xl bg-white border border-slate-200 text-neutral-800 placeholder-neutral-400 text-sm focus:outline-none focus:border-purple-500/50 disabled:opacity-50"
+            className="flex-1 min-w-0 px-4 py-3 rounded-xl bg-white border border-slate-200 text-neutral-800 placeholder-neutral-400 text-sm focus:outline-none focus:border-purple-500/50 disabled:opacity-50"
           />
           <button
             type="submit"
             disabled={!input.trim() || selectedDocs.length === 0}
-            className="p-3.5 rounded-xl bg-purple-600 hover:bg-purple-500 text-white transition-all disabled:opacity-50 cursor-pointer"
+            className="p-3.5 rounded-xl bg-purple-600 hover:bg-purple-500 text-white transition-all disabled:opacity-50 cursor-pointer shrink-0"
           >
             <Send className="h-4 w-4" />
           </button>
