@@ -22,8 +22,8 @@ export function AdminPanelView() {
 
   if (!isAdmin) {
     return (
-      <div className="max-w-2xl mx-auto my-12 p-8 rounded-3xl bg-white border border-rose-200 text-center space-y-4 shadow-xl">
-        <div className="w-16 h-16 rounded-full bg-rose-100 text-rose-600 mx-auto flex items-center justify-center">
+      <div className="max-w-2xl mx-auto my-12 p-8 rounded-3xl bg-white border border-purple-200 text-center space-y-4 shadow-xl">
+        <div className="w-16 h-16 rounded-full bg-purple-100 text-purple-600 mx-auto flex items-center justify-center">
           <Lock className="h-8 w-8" />
         </div>
         <h2 className="text-xl font-bold text-slate-900">Restricted Enterprise Admin Panel</h2>
@@ -31,7 +31,7 @@ export function AdminPanelView() {
           Your current account role (<strong>{user?.role.toUpperCase() || "GUEST"}</strong>) does not have system administrator privileges.
         </p>
         <p className="text-xs text-purple-600 font-semibold">
-          Click "Sign In" in the top bar and select "System Administrator (Jeel Khunt)" to unlock full admin access.
+          Click "Sign In" in the top bar and select "System Administrator" to unlock full admin access.
         </p>
       </div>
     )

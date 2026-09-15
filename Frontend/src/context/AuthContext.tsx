@@ -40,12 +40,12 @@ const DEFAULT_WORKSPACES: Workspace[] = [
 
 const DEFAULT_USER: UserProfile = {
   id: "usr-admin-001",
-  name: "Jeel Khunt",
-  email: "jeel.khunt@ornitech.ai",
+  name: "Enterprise Admin",
+  email: "admin@ornitech.ai",
   role: "admin",
-  avatar: "JK",
-  title: "Chief Technology Officer & Admin",
-  organization: "Ornitech Intelligence Labs"
+  avatar: "EA",
+  title: "System Administrator",
+  organization: "Ornitech AI"
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined)
@@ -93,14 +93,23 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       auditor: "Lead Compliance Auditor"
     }
 
+    const defaultNames: Record<UserRole, string> = {
+      admin: "Enterprise Admin",
+      legal: "Legal Counsel",
+      executive: "Executive Director",
+      auditor: "Compliance Auditor"
+    }
+
+    const userName = name || defaultNames[role]
+
     const newUser: UserProfile = {
       id: `usr-${role}-${Math.floor(100 + Math.random() * 900)}`,
-      name: name || (role === "admin" ? "Jeel Khunt" : role === "legal" ? "Sarah Jenkins, Esq." : role === "executive" ? "Marcus Vance" : "Elena Rostova"),
-      email: email || `${(name || role).toLowerCase().replace(/\s+/g, ".")}@ornitech.ai`,
+      name: userName,
+      email: email || `${role}@ornitech.ai`,
       role,
-      avatar: (name || role).split(" ").map(n => n[0]).join("").toUpperCase().slice(0, 2),
+      avatar: userName.split(" ").map(n => n[0]).join("").toUpperCase().slice(0, 2),
       title: roleTitles[role],
-      organization: "Ornitech Intelligence Labs"
+      organization: "Ornitech AI"
     }
 
     setUser(newUser)

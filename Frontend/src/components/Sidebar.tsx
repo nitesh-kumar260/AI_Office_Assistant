@@ -121,17 +121,17 @@ export function Sidebar({
         )}
       >
         {/* Brand Header */}
-        <div className="h-16 flex items-center px-5 border-b border-slate-200/85 justify-between shrink-0">
-          <div className="flex items-center gap-3 overflow-hidden">
-            <div className="p-2 rounded-xl bg-purple-600 text-white shadow-md shadow-purple-500/30 preserve-3d animate-float-3d">
+        <div className="h-16 flex items-center px-4 border-b border-slate-200/85 justify-between shrink-0">
+          <div className="flex items-center gap-3 min-w-0">
+            <div className="p-2.5 rounded-xl bg-gradient-to-br from-purple-600 via-indigo-600 to-blue-600 text-white shadow-md shadow-purple-500/25 shrink-0 transition-transform duration-300 hover:scale-105 cursor-pointer">
               <Terminal className="h-5 w-5" />
             </div>
             {(!isCollapsed || isMobileOpen) && (
-              <div className="flex flex-col">
-                <span className="font-black tracking-wider bg-gradient-to-r from-purple-600 via-indigo-600 to-blue-600 bg-clip-text text-transparent text-sm">
+              <div className="flex flex-col min-w-0">
+                <span className="font-black tracking-wider bg-gradient-to-r from-purple-600 via-indigo-600 to-blue-600 bg-clip-text text-transparent text-sm truncate leading-tight">
                   ORNITECH AI
                 </span>
-                <span className="text-[10px] text-slate-400 font-mono tracking-widest uppercase">
+                <span className="text-[10px] text-slate-400 font-mono tracking-widest uppercase truncate leading-tight mt-0.5">
                   Enterprise 3D
                 </span>
               </div>

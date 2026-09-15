@@ -4,13 +4,11 @@ import type { UserRole } from "@/context/AuthContext"
 import { 
   ShieldCheck, 
   KeyRound, 
-  Sparkles, 
   Lock, 
   Building2, 
-  ArrowRight, 
-  CheckCircle2, 
   Terminal,
-  Zap
+  Zap,
+  CheckCircle2
 } from "lucide-react"
 
 interface AuthViewProps {
@@ -31,15 +29,8 @@ export function AuthView({ onNavigateToDashboard }: AuthViewProps) {
     onNavigateToDashboard()
   }
 
-  const demoAccounts: { role: UserRole; name: string; title: string; badge: string; color: string }[] = [
-    { role: "admin", name: "Jeel Khunt", title: "CTO & Admin", badge: "Full Root Access", color: "from-purple-600 to-indigo-600" },
-    { role: "legal", name: "Sarah Jenkins, Esq.", title: "Senior Legal Counsel", badge: "Legal & Contracts", color: "from-blue-600 to-cyan-600" },
-    { role: "executive", name: "Marcus Vance", title: "Operations Director", badge: "Executive & Reports", color: "from-emerald-600 to-teal-600" },
-    { role: "auditor", name: "Elena Rostova", title: "Compliance Lead", badge: "Auditor Verification", color: "from-amber-500 to-orange-600" },
-  ]
-
   return (
-    <div className="space-y-8 max-w-7xl mx-auto pb-12 scroll-3d-perspective">
+    <div className="space-y-8 max-w-4xl mx-auto pb-12 scroll-3d-perspective">
       
       {/* Hero Header with 3D Float */}
       <div className="flex flex-col md:flex-row items-center justify-between gap-6 p-8 rounded-3xl bg-gradient-to-r from-purple-900/15 via-indigo-900/10 to-slate-900/15 border border-purple-500/30 glass-panel preserve-3d animate-float-3d">
@@ -83,77 +74,34 @@ export function AuthView({ onNavigateToDashboard }: AuthViewProps) {
         )}
       </div>
 
-      {/* Main Grid: 1-Click Demo Login Presets & Full Auth Form */}
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
+      {/* Main Form Container */}
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
         
-        {/* Left Column (5 Cols): 1-Click Demo Identity Cards */}
-        <div className="lg:col-span-5 space-y-6">
-          <div className="p-6 rounded-3xl bg-white border border-slate-200 shadow-sm space-y-4 scroll-3d-card">
-            <div className="flex items-center justify-between border-b border-slate-100 pb-3">
-              <span className="text-xs font-mono font-bold text-purple-600 uppercase flex items-center gap-1.5">
-                <Sparkles className="h-4 w-4" /> 1-Click Demo Logins
-              </span>
-              <span className="text-[11px] font-semibold text-slate-400">Instant Access</span>
-            </div>
-
-            <p className="text-xs text-slate-500">
-              Click any pre-configured enterprise identity below to sign in instantly with tailored role permissions:
-            </p>
-
-            <div className="space-y-3">
-              {demoAccounts.map((account) => (
-                <button
-                  key={account.role}
-                  onClick={() => {
-                    login(account.role, account.name)
-                    onNavigateToDashboard()
-                  }}
-                  className="w-full flex items-center justify-between p-4 rounded-2xl border border-slate-200 hover:border-purple-300 bg-slate-50/80 hover:bg-purple-50/50 transition-all duration-300 group cursor-pointer scroll-3d-card"
-                >
-                  <div className="flex items-center gap-3">
-                    <div className={`w-10 h-10 rounded-xl bg-gradient-to-tr ${account.color} text-white font-bold flex items-center justify-center text-xs shadow-md`}>
-                      {account.name.split(" ").map(n => n[0]).join("").toUpperCase().slice(0, 2)}
-                    </div>
-                    <div className="text-left">
-                      <div className="font-bold text-sm text-slate-900 group-hover:text-purple-700 transition-colors">
-                        {account.name}
-                      </div>
-                      <div className="text-xs text-slate-500">{account.title}</div>
-                    </div>
-                  </div>
-
-                  <div className="flex items-center gap-2">
-                    <span className="text-[10px] font-semibold px-2.5 py-1 rounded-md text-white bg-slate-800 group-hover:bg-purple-600 transition-colors">
-                      {account.badge}
-                    </span>
-                    <ArrowRight className="h-4 w-4 text-slate-400 group-hover:text-purple-600 group-hover:translate-x-1 transition-all" />
-                  </div>
-                </button>
-              ))}
-            </div>
-          </div>
-
-          {/* Security Features Badge Box */}
-          <div className="p-6 rounded-3xl bg-slate-900 text-white shadow-xl space-y-3 scroll-3d-card-cyan">
+        {/* Security Safeguards Info Box */}
+        <div className="lg:col-span-4 space-y-4">
+          <div className="p-6 rounded-3xl bg-slate-900 text-white shadow-xl space-y-4 scroll-3d-card-cyan border border-slate-800">
             <h3 className="font-bold text-sm text-cyan-400 flex items-center gap-2">
-              <ShieldCheck className="h-4 w-4" /> Enterprise Security Safeguards
+              <ShieldCheck className="h-5 w-5" /> Enterprise Security Safeguards
             </h3>
-            <ul className="space-y-2 text-xs text-slate-300 font-mono">
+            <p className="text-xs text-slate-400 leading-relaxed">
+              Your organizational credentials are protected by bank-grade encryption and granular permission hierarchies.
+            </p>
+            <ul className="space-y-2.5 text-xs text-slate-300 font-mono pt-2 border-t border-slate-800">
               <li className="flex items-center gap-2">
-                <CheckCircle2 className="h-3.5 w-3.5 text-emerald-400" /> OAuth 2.0 & SAML 2.0 SSO Integration
+                <CheckCircle2 className="h-4 w-4 text-emerald-400 shrink-0" /> OAuth 2.0 & SAML 2.0 SSO Integration
               </li>
               <li className="flex items-center gap-2">
-                <CheckCircle2 className="h-3.5 w-3.5 text-emerald-400" /> AES-256 Encrypted Session Tokens
+                <CheckCircle2 className="h-4 w-4 text-emerald-400 shrink-0" /> AES-256 Encrypted Session Tokens
               </li>
               <li className="flex items-center gap-2">
-                <CheckCircle2 className="h-3.5 w-3.5 text-emerald-400" /> Granular Role-Based Access Control (RBAC)
+                <CheckCircle2 className="h-4 w-4 text-emerald-400 shrink-0" /> Granular Role-Based Access Control (RBAC)
               </li>
             </ul>
           </div>
         </div>
 
-        {/* Right Column (7 Cols): Dedicated Sign In / Sign Up Form */}
-        <div className="lg:col-span-7">
+        {/* Dedicated Sign In / Sign Up Form */}
+        <div className="lg:col-span-8">
           <div className="p-8 rounded-3xl bg-white border border-slate-200 shadow-xl space-y-6 scroll-3d-card">
             
             {/* Form Mode Selector Header */}

@@ -59,9 +59,9 @@ export function AutoReportView() {
   return (
     <div className="space-y-8 max-w-7xl mx-auto pb-12">
       {/* Top Banner */}
-      <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 p-6 rounded-3xl bg-gradient-to-r from-emerald-900/10 via-teal-900/5 to-slate-900/10 border border-emerald-500/20 glass-panel">
+      <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 p-6 rounded-3xl bg-gradient-to-r from-purple-900/10 via-indigo-900/5 to-slate-900/10 border border-purple-500/20 glass-panel">
         <div className="flex items-center gap-4">
-          <div className="p-3.5 rounded-2xl bg-gradient-to-tr from-emerald-600 to-teal-600 text-white shadow-lg shadow-emerald-500/30 preserve-3d animate-float-3d">
+          <div className="p-3.5 rounded-2xl bg-gradient-to-tr from-purple-600 to-indigo-600 text-white shadow-lg shadow-purple-500/30 preserve-3d animate-float-3d">
             <FileBarChart2 className="h-7 w-7" />
           </div>
           <div>
@@ -69,7 +69,7 @@ export function AutoReportView() {
               <h1 className="text-2xl font-black tracking-tight text-slate-900 dark:text-white">
                 Auto-Generated Executive Reports
               </h1>
-              <span className="px-2.5 py-0.5 rounded-full text-xs font-mono font-bold bg-emerald-100 text-emerald-700 border border-emerald-200">
+              <span className="px-2.5 py-0.5 rounded-full text-xs font-mono font-bold bg-purple-100 text-purple-700 border border-purple-200">
                 AI Analytics Engine
               </span>
             </div>
@@ -83,7 +83,7 @@ export function AutoReportView() {
           <button 
             onClick={handleGenerateReport}
             disabled={isGenerating}
-            className="px-5 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-medium text-xs flex items-center gap-2 shadow-lg shadow-emerald-500/20 transition-all cursor-pointer"
+            className="px-5 py-2.5 rounded-xl bg-purple-600 hover:bg-purple-700 text-white font-medium text-xs flex items-center gap-2 shadow-lg shadow-purple-500/20 transition-all cursor-pointer"
           >
             <Sparkles className={`h-4 w-4 ${isGenerating ? "animate-spin" : ""}`} />
             {isGenerating ? "Synthesizing Report..." : "Generate New Executive Report"}
@@ -93,17 +93,17 @@ export function AutoReportView() {
 
       {/* Generation Progress Overlay (If active) */}
       {isGenerating && (
-        <div className="p-6 rounded-3xl bg-white border border-emerald-200 shadow-xl space-y-3 animate-in fade-in duration-300">
+        <div className="p-6 rounded-3xl bg-white border border-purple-200 shadow-xl space-y-3 animate-in fade-in duration-300">
           <div className="flex items-center justify-between">
-            <span className="text-xs font-mono font-bold text-emerald-700 uppercase flex items-center gap-2">
+            <span className="text-xs font-mono font-bold text-purple-700 uppercase flex items-center gap-2">
               <Zap className="h-4 w-4 animate-bounce" /> {currentStep}
             </span>
-            <span className="text-xs font-bold font-mono text-emerald-800">{generationProgress}%</span>
+            <span className="text-xs font-bold font-mono text-purple-800">{generationProgress}%</span>
           </div>
 
-          <div className="w-full h-3 bg-emerald-50 rounded-full overflow-hidden border border-emerald-100">
+          <div className="w-full h-3 bg-purple-50 rounded-full overflow-hidden border border-purple-200">
             <div 
-              className="h-full bg-gradient-to-r from-emerald-500 to-teal-400 transition-all duration-300 rounded-full"
+              className="h-full bg-gradient-to-r from-purple-600 to-indigo-500 transition-all duration-300 rounded-full"
               style={{ width: `${generationProgress}%` }}
             />
           </div>
@@ -115,7 +115,7 @@ export function AutoReportView() {
         {/* Template Selector */}
         <div className="p-6 rounded-3xl bg-white border border-slate-200 shadow-sm card-3d">
           <div className="flex items-center justify-between mb-4">
-            <span className="text-xs font-mono font-bold uppercase tracking-wider text-emerald-600 flex items-center gap-1.5">
+            <span className="text-xs font-mono font-bold uppercase tracking-wider text-purple-600 flex items-center gap-1.5">
               <Layers className="h-4 w-4" /> 1. Report Template
             </span>
             <span className="text-[10px] font-semibold text-slate-400">Preset Architecture</span>
@@ -140,10 +140,10 @@ export function AutoReportView() {
         {/* Date Range Selector */}
         <div className="p-6 rounded-3xl bg-white border border-slate-200 shadow-sm card-3d">
           <div className="flex items-center justify-between mb-4">
-            <span className="text-xs font-mono font-bold uppercase tracking-wider text-teal-600 flex items-center gap-1.5">
+            <span className="text-xs font-mono font-bold uppercase tracking-wider text-purple-600 flex items-center gap-1.5">
               <Calendar className="h-4 w-4" /> 2. Time Horizon
             </span>
-            <span className="text-[10px] font-semibold text-teal-700 px-2 py-0.5 rounded-md bg-teal-50">
+            <span className="text-[10px] font-semibold text-purple-700 px-2 py-0.5 rounded-md bg-purple-50">
               Live Data Range
             </span>
           </div>
@@ -170,7 +170,7 @@ export function AutoReportView() {
             <span className="text-xs font-mono font-bold uppercase tracking-wider text-purple-600 flex items-center gap-1.5">
               <Clock className="h-4 w-4" /> 3. Auto-Schedule Email
             </span>
-            <span className="text-[10px] font-semibold text-emerald-600 flex items-center gap-1">
+            <span className="text-[10px] font-semibold text-purple-600 flex items-center gap-1">
               <CheckCircle2 className="h-3 w-3" /> Scheduled
             </span>
           </div>
@@ -198,7 +198,7 @@ export function AutoReportView() {
           <div className="p-8 rounded-3xl bg-white border border-slate-200 shadow-sm space-y-6">
             <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 pb-6 border-b border-slate-100">
               <div>
-                <span className="text-xs font-mono font-bold uppercase text-emerald-600">
+                <span className="text-xs font-mono font-bold uppercase text-purple-600">
                   CONFIDENTIAL EXECUTIVE REPORT • ORNITECH AI
                 </span>
                 <h2 className="text-xl font-bold text-slate-900 mt-1">
@@ -214,11 +214,11 @@ export function AutoReportView() {
                   onClick={() => alert("Downloading Report CSV...")}
                   className="px-3.5 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold text-xs flex items-center gap-1.5 cursor-pointer"
                 >
-                  <FileSpreadsheet className="h-4 w-4 text-emerald-600" /> Export CSV
+                  <FileSpreadsheet className="h-4 w-4 text-purple-600" /> Export CSV
                 </button>
                 <button 
                   onClick={() => alert("Downloading PDF Report...")}
-                  className="px-4 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-semibold text-xs flex items-center gap-1.5 shadow-md shadow-emerald-500/20 cursor-pointer"
+                  className="px-4 py-2 rounded-xl bg-purple-600 hover:bg-purple-700 text-white font-semibold text-xs flex items-center gap-1.5 shadow-md shadow-purple-500/20 cursor-pointer"
                 >
                   <Download className="h-4 w-4" /> Download PDF
                 </button>
@@ -230,7 +230,7 @@ export function AutoReportView() {
               <div className="p-5 rounded-2xl bg-slate-50 border border-slate-200">
                 <div className="text-xs font-semibold text-slate-500">Total Processed Documents</div>
                 <div className="text-3xl font-black text-slate-900 mt-1">540 Docs</div>
-                <div className="text-[11px] text-emerald-600 font-semibold mt-1 flex items-center gap-1">
+                <div className="text-[11px] text-purple-600 font-semibold mt-1 flex items-center gap-1">
                   <TrendingUp className="h-3.5 w-3.5" /> +38% MoM Acceleration
                 </div>
               </div>
@@ -246,7 +246,7 @@ export function AutoReportView() {
               <div className="p-5 rounded-2xl bg-slate-50 border border-slate-200">
                 <div className="text-xs font-semibold text-slate-500">Hours Automated by AI</div>
                 <div className="text-3xl font-black text-slate-900 mt-1">2,100 Hours</div>
-                <div className="text-[11px] text-emerald-600 font-semibold mt-1">
+                <div className="text-[11px] text-purple-600 font-semibold mt-1">
                   Estimated $168,000 Cost Saved
                 </div>
               </div>
@@ -255,7 +255,7 @@ export function AutoReportView() {
             {/* Interactive Recharts Analytics Visualization */}
             <div className="pt-4">
               <h3 className="text-sm font-bold text-slate-900 mb-4 flex items-center gap-2">
-                <PieChart className="h-4 w-4 text-emerald-600" /> Monthly Document Throughput vs Risk Mitigation (2026)
+                <PieChart className="h-4 w-4 text-purple-600" /> Monthly Document Throughput vs Risk Mitigation (2026)
               </h3>
 
               <div className="h-72 w-full pt-2 min-h-[250px] relative">
@@ -263,29 +263,29 @@ export function AutoReportView() {
                   <AreaChart data={analyticsData} margin={{ top: 10, right: 30, left: 0, bottom: 0 }}>
                     <defs>
                       <linearGradient id="colorDocs" x1="0" y1="0" x2="0" y2="1">
-                        <stop offset="5%" stopColor="#10b981" stopOpacity={0.4}/>
-                        <stop offset="95%" stopColor="#10b981" stopOpacity={0}/>
+                        <stop offset="5%" stopColor="#7c3aed" stopOpacity={0.4}/>
+                        <stop offset="95%" stopColor="#7c3aed" stopOpacity={0}/>
                       </linearGradient>
                       <linearGradient id="colorRisks" x1="0" y1="0" x2="0" y2="1">
-                        <stop offset="5%" stopColor="#8b5cf6" stopOpacity={0.4}/>
-                        <stop offset="95%" stopColor="#8b5cf6" stopOpacity={0}/>
+                        <stop offset="5%" stopColor="#4f46e5" stopOpacity={0.4}/>
+                        <stop offset="95%" stopColor="#4f46e5" stopOpacity={0}/>
                       </linearGradient>
                     </defs>
                     <CartesianGrid strokeDasharray="3 3" opacity={0.2} />
                     <XAxis dataKey="month" tick={{ fontSize: 12 }} />
                     <YAxis tick={{ fontSize: 12 }} />
                     <Tooltip />
-                    <Area type="monotone" dataKey="docs" stroke="#10b981" strokeWidth={3} fillOpacity={1} fill="url(#colorDocs)" name="Processed Documents" />
-                    <Area type="monotone" dataKey="risks" stroke="#8b5cf6" strokeWidth={3} fillOpacity={1} fill="url(#colorRisks)" name="Risk Flags Identified" />
+                    <Area type="monotone" dataKey="docs" stroke="#7c3aed" strokeWidth={3} fillOpacity={1} fill="url(#colorDocs)" name="Processed Documents" />
+                    <Area type="monotone" dataKey="risks" stroke="#4f46e5" strokeWidth={3} fillOpacity={1} fill="url(#colorRisks)" name="Risk Flags Identified" />
                   </AreaChart>
                 </ResponsiveContainer>
               </div>
             </div>
 
             {/* Executive Synthesis Narrative */}
-            <div className="p-5 rounded-2xl bg-emerald-50/50 border border-emerald-200 text-xs text-slate-800 space-y-2">
-              <h4 className="font-bold text-emerald-950 flex items-center gap-1.5">
-                <Sparkles className="h-4 w-4 text-emerald-600" /> AI Executive Synthesis Summary
+            <div className="p-5 rounded-2xl bg-purple-50/50 border border-purple-200 text-xs text-slate-800 space-y-2">
+              <h4 className="font-bold text-purple-950 flex items-center gap-1.5">
+                <Sparkles className="h-4 w-4 text-purple-600" /> AI Executive Synthesis Summary
               </h4>
               <p className="leading-relaxed text-slate-700">
                 During Q3 2026, document processing throughput expanded by 38% month-over-month. The legal AI vector engine automatically flagged 118 clause discrepancies across vendor contracts, saving an estimated 2,100 legal review hours. Zero non-compliance breaches were recorded across all enterprise operations.

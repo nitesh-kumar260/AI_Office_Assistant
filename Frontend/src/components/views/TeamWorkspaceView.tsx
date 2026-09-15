@@ -5,11 +5,9 @@ import {
   ShieldCheck, 
   FolderGit2, 
   UserPlus, 
-  Settings, 
   Activity, 
   Check, 
-  MoreVertical, 
-  Sparkles
+  MoreVertical 
 } from "lucide-react"
 import { useAuth } from "@/context/AuthContext"
 import type { UserRole } from "@/context/AuthContext"
@@ -26,26 +24,29 @@ interface TeamMember {
 }
 
 export function TeamWorkspaceView() {
-  const { workspace, workspaces, setWorkspace } = useAuth()
+  const { user, workspace, workspaces, setWorkspace } = useAuth()
   const [activeTab, setActiveTab] = useState<"members" | "rbac" | "folders" | "audit">("members")
   const [inviteEmail, setInviteEmail] = useState("")
   const [inviteRole, setInviteRole] = useState<UserRole>("legal")
   const [showInviteModal, setShowInviteModal] = useState(false)
 
-  const [members, setMembers] = useState<TeamMember[]>([
-    { id: "m-1", name: "Jeel Khunt", email: "jeel.khunt@ornitech.ai", role: "admin", department: "Engineering & Executive", status: "Active", lastActive: "Just now", avatar: "JK" },
-    { id: "m-2", name: "Sarah Jenkins, Esq.", email: "sarah.jenkins@ornitech.ai", role: "legal", department: "Corporate Legal", status: "Active", lastActive: "12 mins ago", avatar: "SJ" },
-    { id: "m-3", name: "Marcus Vance", email: "marcus.vance@ornitech.ai", role: "executive", department: "Operations", status: "Active", lastActive: "1 hour ago", avatar: "MV" },
-    { id: "m-4", name: "Elena Rostova", email: "elena.rostova@ornitech.ai", role: "auditor", department: "Compliance Audit", status: "Active", lastActive: "3 hours ago", avatar: "ER" },
-    { id: "m-5", name: "David Chen", email: "david.chen@ornitech.ai", role: "legal", department: "Intellectual Property", status: "Pending Invite", lastActive: "Invited", avatar: "DC" },
-  ])
+  const [members, setMembers] = useState<TeamMember[]>(() => {
+    if (user) {
+      return [{
+        id: user.id,
+        name: user.name,
+        email: user.email,
+        role: user.role,
+        department: "Enterprise Workspace",
+        status: "Active",
+        lastActive: "Just now",
+        avatar: user.avatar
+      }]
+    }
+    return []
+  })
 
-  const auditLogs = [
-    { user: "Sarah Jenkins, Esq.", action: "Digitally signed contract", target: "MSA_Vendor_Agreement_v2.1.pdf", time: "14 minutes ago", icon: ShieldCheck, color: "text-purple-600" },
-    { user: "Jeel Khunt", action: "Generated executive report", target: "Q3 Compliance & Risk Audit", time: "1 hour ago", icon: Sparkles, color: "text-emerald-600" },
-    { user: "Marcus Vance", action: "Updated workspace permissions", target: "Role-Based Access Matrix", time: "3 hours ago", icon: Settings, color: "text-blue-600" },
-    { user: "Elena Rostova", action: "Verified RAG Vector embeddings", target: "Legal Document Chunk Index", time: "5 hours ago", icon: Activity, color: "text-amber-600" },
-  ]
+  const auditLogs: any[] = []
 
   const handleInviteMember = (e: React.FormEvent) => {
     e.preventDefault()

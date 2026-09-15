@@ -53,42 +53,8 @@ export function Upload_doc() {
       setDocuments(data);
       setErrorMsg(null);
     } catch (err) {
-      console.warn("Backend unavailable, using fallback mock data.", err);
-      // Fallback mocks if the backend server is not running
-      setDocuments([
-        {
-          _id: "mock-1",
-          name: "MSA_Vendor_Agreement_v2.1.pdf",
-          sizeBytes: 1542000,
-          status: "completed",
-          summary: "Master Services Agreement covering standard legal clauses, payment deadlines, and liability caps.",
-          signees: [
-            { email: "sarah.jenkins@ornitech.ai", signed: true },
-            { email: "marcus.vance@ornitech.ai", signed: false }
-          ],
-          createdAt: new Date(Date.now() - 24 * 60 * 60 * 1000).toISOString()
-        },
-        {
-          _id: "mock-2",
-          name: "IP_Licensing_Framework_Final.pdf",
-          sizeBytes: 894000,
-          status: "completed",
-          summary: "Intellectual Property licensing conditions for Ornitech Intelligence telemetry and trained base models.",
-          signees: [
-            { email: "jeel.khunt@ornitech.ai", signed: true }
-          ],
-          createdAt: new Date(Date.now() - 3 * 3600000).toISOString()
-        },
-        {
-          _id: "mock-3",
-          name: "Q3_Compliance_Audit_Draft.docx",
-          sizeBytes: 2435000,
-          status: "scanning",
-          summary: "Automated compliance scan regarding Vector index parameters, logs and database audits.",
-          signees: [],
-          createdAt: new Date(Date.now() - 600000).toISOString()
-        }
-      ]);
+      console.warn("Backend connection offline.", err);
+      setDocuments([]);
     } finally {
       setLoading(false);
     }
