@@ -3,6 +3,10 @@ import cors from 'cors';
 import mongoose from 'mongoose';
 import documentRoutes from './routes/documentRoutes';
 import extractionRoutes from './routes/extractionRoutes';
+import ragRoutes from './routes/ragRoutes';
+import reportRoutes from './routes/reportRoutes';
+import signatureRoutes from './routes/signatureRoutes';
+import workspaceRoutes from './routes/workspaceRoutes';
 
 const app: Application = express();
 
@@ -14,6 +18,10 @@ app.use(express.urlencoded({ extended: true }));
 // Register routes
 app.use('/api/documents', documentRoutes);
 app.use('/api/extractions', extractionRoutes);
+app.use('/api/rag', ragRoutes);
+app.use('/api/reports', reportRoutes);
+app.use('/api/signatures', signatureRoutes);
+app.use('/api/workspaces', workspaceRoutes);
 
 
 // Health Check Route

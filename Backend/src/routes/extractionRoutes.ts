@@ -1,7 +1,9 @@
 import { Router, Request, Response } from 'express';
 import Extraction from '../models/Extraction';
+import Doc from '../models/Document';
 import Workspace from '../models/Workspace';
 import mongoose from 'mongoose';
+import { ExtractionService } from '../services/extractionService';
 
 const router = Router();
 
@@ -112,6 +114,48 @@ router.post('/', async (req: Request, res: Response) => {
     res.status(201).json(newExtraction);
   } catch (error) {
     res.status(500).json({ error: (error as Error).message });
+  }
+});
+
+// POST /api/extractions/extract - Run AI extraction on a document and persist results
+router.post('/extract', async (req: Request, res: Response) => {
+  try {
+    const { documentId, documentType } = req.body;
+
+    if (!documentId || !mongoose.Types.ObjectId.isValid(documentId)) {
+      return res.status(400).json({ error: 'Valid documentId is required' });
+    }
+
+    const validTypes = ['invoice', 'pan', 'aadhaar', 'gst'];
+    if (!documentType || !validTypes.includes(documentType)) {
+      return res.status(400).json({ error: `documentType must be one of: ${validTypes.join(', ')}` });
+    }
+
+    const doc = await Doc.findById(documentId);
+    if (!doc) {
+      return res.status(404).json({ error: 'Document not found' });
+    }
+
+    const textToExtract = doc.content || doc.ocrContent;
+    if (!textToExtract || !textToExtract.trim()) {
+      return res.status(400).json({ error: 'Document contains no text content for extraction' });
+    }
+
+    const extractedData = await ExtractionService.extractDocumentData(textToExtract, documentType, doc.name);
+
+    const ws = doc.workspace || (await getOrCreateDefaultWorkspace())._id;
+
+    const newExtraction = await Extraction.create({
+      documentType,
+      fileName: doc.name,
+      extractedData,
+      workspace: ws,
+    });
+
+    res.status(201).json(newExtraction);
+  } catch (error: any) {
+    console.error('AI Extraction Error:', error);
+    res.status(500).json({ error: error.message || 'Failed to extract document information' });
   }
 });
 
