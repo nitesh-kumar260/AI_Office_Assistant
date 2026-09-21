@@ -5,6 +5,7 @@ export type UserRole = 'admin' | 'legal' | 'executive' | 'auditor';
 export interface IUser extends MongooseDocument {
   name: string;
   email: string;
+  passwordHash?: string;
   role: UserRole;
   avatar: string;
   title: string;
@@ -27,6 +28,10 @@ const UserSchema = new Schema<IUser>(
       unique: true,
       trim: true,
       lowercase: true,
+    },
+    passwordHash: {
+      type: String,
+      select: false,
     },
     role: {
       type: String,

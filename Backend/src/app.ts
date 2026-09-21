@@ -1,6 +1,7 @@
 import express, { Application, Request, Response } from 'express';
 import cors from 'cors';
 import mongoose from 'mongoose';
+import authRoutes from './routes/authRoutes';
 import documentRoutes from './routes/documentRoutes';
 import extractionRoutes from './routes/extractionRoutes';
 import ragRoutes from './routes/ragRoutes';
@@ -16,6 +17,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // Register routes
+app.use('/api/auth', authRoutes);
 app.use('/api/documents', documentRoutes);
 app.use('/api/extractions', extractionRoutes);
 app.use('/api/rag', ragRoutes);
