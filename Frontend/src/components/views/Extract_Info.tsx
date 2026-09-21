@@ -49,71 +49,9 @@ export function Extract_Info() {
         setSelectedItem(data[0]);
       }
     } catch (err) {
-      console.warn("Backend unavailable, using fallback mock history.", err);
-      const fallbackData: ExtractionItem[] = [
-        {
-          _id: "mock-ext-1",
-          documentType: "invoice",
-          fileName: "INV_2026_0891.pdf",
-          extractedData: {
-            invoiceNumber: "INV-2026-0891",
-            vendorName: "AWS Cloud Services India",
-            gstin: "27AADCA1234F1Z8",
-            billingDate: "2026-07-15",
-            dueDate: "2026-08-15",
-            taxableAmount: "1,45,200.00",
-            cgst: "13,068.00",
-            sgst: "13,068.00",
-            totalAmount: "1,71,336.00",
-            paymentStatus: "Pending Approval"
-          },
-          createdAt: new Date(Date.now() - 30 * 60 * 1000).toISOString()
-        },
-        {
-          _id: "mock-ext-2",
-          documentType: "pan",
-          fileName: "ravi_pan_scan.jpg",
-          extractedData: {
-            panNumber: "BHPQK1294F",
-            fullName: "Ravi",
-            fatherName: "Dharmesh",
-            dateOfBirth: "2001-05-14",
-            signaturePresent: "Verified"
-          },
-          createdAt: new Date(Date.now() - 2 * 3600000).toISOString()
-        },
-        {
-          _id: "mock-ext-3",
-          documentType: "aadhaar",
-          fileName: "ravi_aadhaar_scan.png",
-          extractedData: {
-            aadhaarNumber: "8812 4310 9942",
-            fullName: "Ravi",
-            gender: "Male",
-            dateOfBirth: "2001-05-14",
-            address: "Ornitech Labs, G-12, Sector V, Salt Lake, Kolkata, West Bengal - 700091"
-          },
-          createdAt: new Date(Date.now() - 24 * 3600000).toISOString()
-        },
-        {
-          _id: "mock-ext-4",
-          documentType: "gst",
-          fileName: "gstin_registration_cert.pdf",
-          extractedData: {
-            gstin: "19AAFCO9914M1Z2",
-            legalName: "ORNITECH INTELLIGENCE LABS PRIVATE LIMITED",
-            tradeName: "Ornitech Intelligence Labs",
-            constitutionOfBusiness: "Private Limited Company",
-            dateOfLiability: "2025-10-12",
-            registrationType: "Regular"
-          },
-          createdAt: new Date(Date.now() - 3 * 24 * 3600000).toISOString()
-        }
-      ];
-      setHistory(fallbackData);
-      if (!selectedItem && fallbackData.length > 0) {
-        setSelectedItem(fallbackData[0]);
-      }
+      console.warn("Backend connection offline.", err);
+      setHistory([]);
+      setSelectedItem(null);
     } finally {
       setLoading(false);
     }
@@ -296,12 +234,12 @@ export function Extract_Info() {
 
   const getDocTypeColor = (type: DocType): string => {
     const colors = {
-      invoice: "from-emerald-500 to-teal-600 bg-emerald-50 text-emerald-700 border-emerald-100",
+      invoice: "from-purple-500 to-indigo-600 bg-purple-50 text-purple-700 border-purple-100",
       pan: "from-purple-500 to-indigo-600 bg-purple-50 text-purple-700 border-purple-100",
-      aadhaar: "from-orange-500 to-amber-600 bg-orange-50 text-orange-700 border-orange-100",
-      gst: "from-blue-500 to-cyan-600 bg-blue-50 text-blue-700 border-blue-100"
+      aadhaar: "from-purple-500 to-indigo-600 bg-purple-50 text-purple-700 border-purple-100",
+      gst: "from-purple-500 to-indigo-600 bg-purple-50 text-purple-700 border-purple-100"
     };
-    return colors[type] || "from-slate-500 to-slate-600 bg-slate-50 text-slate-700 border-slate-150";
+    return colors[type] || "from-purple-500 to-indigo-600 bg-purple-50 text-purple-700 border-purple-100";
   };
 
   const getDocTypeIcon = (type: DocType) => {

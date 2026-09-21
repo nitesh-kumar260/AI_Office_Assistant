@@ -159,18 +159,18 @@ export function DocumentComparisonView() {
         </div>
 
         {/* Document B Card */}
-        <div className="p-6 rounded-3xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm hover:shadow-md transition-all card-3d-cyan min-w-0">
+        <div className="p-6 rounded-3xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm hover:shadow-md transition-all card-3d min-w-0">
           <div className="flex items-center justify-between mb-4">
-            <span className="text-xs font-mono font-bold uppercase tracking-wider text-cyan-600 flex items-center gap-1.5">
+            <span className="text-xs font-mono font-bold uppercase tracking-wider text-purple-600 flex items-center gap-1.5">
               <FileText className="h-4 w-4" /> Revision Document (v2.1)
             </span>
-            <span className="text-[11px] font-semibold text-cyan-700 px-2 py-0.5 rounded-md bg-cyan-50">
+            <span className="text-[11px] font-semibold text-purple-700 px-2 py-0.5 rounded-md bg-purple-50">
               Revised Counterpart
             </span>
           </div>
 
           <div className="flex items-center gap-3 p-3 rounded-2xl bg-slate-50 border border-slate-200 min-w-0">
-            <div className="p-2 rounded-xl bg-cyan-100 text-cyan-700 font-bold text-xs shrink-0">PDF</div>
+            <div className="p-2 rounded-xl bg-purple-100 text-purple-700 font-bold text-xs shrink-0">PDF</div>
             <select 
               value={docB}
               onChange={(e) => setDocB(e.target.value)}

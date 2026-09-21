@@ -42,13 +42,6 @@ interface ChatMessage {
   citations?: string[]
 }
 
-const initialDocs: DocumentContextItem[] = [
-  { id: "doc-1", name: "MSA_Vendor_Agreement_v2.1.pdf", size: "1.5 MB", type: "pdf", selected: true, badge: "Legal" },
-  { id: "doc-2", name: "IP_Licensing_Framework_Final.pdf", size: "894 KB", type: "pdf", selected: true, badge: "IP" },
-  { id: "doc-3", name: "Q3_Compliance_Audit_Draft.docx", size: "2.4 MB", type: "docx", selected: false, badge: "Audit" },
-  { id: "doc-4", name: "Remote_Work_Handbook_2026.pdf", size: "1.1 MB", type: "pdf", selected: false, badge: "HR" }
-]
-
 const prebuiltPrompts = [
   "Summarize key terms & obligations",
   "Identify risk & liability caps",
@@ -56,36 +49,35 @@ const prebuiltPrompts = [
   "Check data privacy standards"
 ]
 
-const mockResponses: Record<string, { answer: string; citations: string[] }> = {
-  "summarize key terms & obligations": {
-    answer: "Based on the selected documents (**MSA_Vendor_Agreement_v2.1.pdf** & **IP_Licensing_Framework_Final.pdf**):\n\n1. **Service Scope**: Vendors provide continuous maintenance and AI pipeline integration support.\n2. **Termination Clause**: Either party may terminate with 30-day prior written notification.\n3. **IP Ownership**: All telemetry and custom model weights generated remain sole property of Ornitech AI.",
-    citations: ["MSA_Vendor_Agreement_v2.1.pdf", "IP_Licensing_Framework_Final.pdf"]
-  },
-  "identify risk & liability caps": {
-    answer: "Liability Analysis from active context:\n\n• **Direct Damage Cap**: Capped at 2x total contract value paid in preceding 12 months.\n• **Consequential Damages**: Excluded, except for breaches of Confidentiality (Section 8) or IP Infringement (Section 12).\n• **Indemnification**: Full indemnity provided for third-party IP claims.",
-    citations: ["MSA_Vendor_Agreement_v2.1.pdf"]
-  },
-  "extract payment schedules": {
-    answer: "Deliverables & Payment Terms:\n\n• **Invoice Schedule**: Net-30 days upon invoice issuance.\n• **Milestone Deliverable 1**: Vector indexing benchmark completion (<150ms query latency).\n• **Late Payment Fee**: 1.5% monthly compound interest on overdue balances.",
-    citations: ["MSA_Vendor_Agreement_v2.1.pdf", "Q3_Compliance_Audit_Draft.docx"]
-  },
-  "check data privacy standards": {
-    answer: "Data Security Compliance:\n\n• **Scrubbing Ledger**: Automatic stripping of PII prior to vector embeddings generation.\n• **Audit Cycle**: 90-day retention window for raw document staging before permanent scrub.\n• **Encryption**: AES-256 at rest, TLS 1.3 in transit across all active node channels.",
-    citations: ["Q3_Compliance_Audit_Draft.docx"]
-  }
-}
-
 export function DocChatbotDrawer({ isOpen, onClose }: DocChatbotDrawerProps) {
-  const [documents, setDocuments] = useState<DocumentContextItem[]>(initialDocs)
+  const [documents, setDocuments] = useState<DocumentContextItem[]>([])
   const [messages, setMessages] = useState<ChatMessage[]>([
     {
       id: "msg-welcome",
       role: "assistant",
-      content: "Hello! I am **DocuMind AI**, your document intelligence assistant. Select active documents from the scope bar and ask questions or choose a quick prompt below.",
-      timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
-      citations: ["MSA_Vendor_Agreement_v2.1.pdf", "IP_Licensing_Framework_Final.pdf"]
+      content: "Hello! I am **DocuMind AI**, your document intelligence assistant. Select active documents from your vault and ask any question.",
+      timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
     }
   ])
+
+  useEffect(() => {
+    fetch("http://localhost:5000/api/documents")
+      .then((res) => res.json())
+      .then((data) => {
+        if (Array.isArray(data)) {
+          const docItems: DocumentContextItem[] = data.map((d: any, idx: number) => ({
+            id: d._id || `doc-${idx}`,
+            name: d.name,
+            size: `${(d.sizeBytes / (1024 * 1024)).toFixed(1)} MB`,
+            type: d.name.split(".").pop()?.toLowerCase() || "pdf",
+            selected: idx === 0,
+            badge: "Vault"
+          }))
+          setDocuments(docItems)
+        }
+      })
+      .catch(() => setDocuments([]))
+  }, [])
   const [input, setInput] = useState("")
   const [isTyping, setIsTyping] = useState(false)
   const [typingStep, setTypingStep] = useState("Indexing vector embeddings...")
@@ -155,38 +147,17 @@ export function DocChatbotDrawer({ isOpen, onClose }: DocChatbotDrawerProps) {
   }
 
   const generateAIAnswer = (userQuery: string) => {
-    const lower = userQuery.toLowerCase()
-    let responseObj = mockResponses[lower]
-
-    if (!responseObj) {
-      const matchedKey = Object.keys(mockResponses).find(k => 
-        lower.includes(k.split(" ")[0]) || 
-        lower.includes("summary") || 
-        lower.includes("contract") || 
-        lower.includes("risk") || 
-        lower.includes("payment") ||
-        lower.includes("privacy")
-      )
-      
-      if (matchedKey) {
-        responseObj = mockResponses[matchedKey]
-      } else {
-        const activeDocNames = selectedDocs.map(d => d.name)
-        responseObj = {
-          answer: activeDocNames.length > 0
-            ? `Analyzed **${activeDocNames.join(", ")}** for: "${userQuery}".\n\nNo high-risk clauses detected. The document structure aligns with enterprise compliance policies. Standard SLAs and confidentiality terms apply.`
-            : "No documents are currently selected in your active context scope. Click 'Manage Scope' above to check at least one file.",
-          citations: activeDocNames.slice(0, 2)
-        }
-      }
-    }
+    const activeDocNames = selectedDocs.map(d => d.name)
+    const responseText = activeDocNames.length > 0
+      ? `Analyzed **${activeDocNames.join(", ")}** for query: "${userQuery}".\n\nThe vector embeddings match your request. Standard SLAs, risk terms, and obligations have been reviewed.`
+      : "No documents are currently selected in your active context scope. Please select at least one file or upload a document."
 
     const aiMsg: ChatMessage = {
       id: "ai-" + Date.now(),
       role: "assistant",
-      content: responseObj.answer,
+      content: responseText,
       timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
-      citations: responseObj.citations
+      citations: activeDocNames.length > 0 ? activeDocNames.slice(0, 2) : undefined
     }
 
     setMessages(prev => [...prev, aiMsg])

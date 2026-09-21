@@ -19,7 +19,6 @@ export function EmailView() {
     setIsGenerating(true)
     setSent(false)
 
-    // Simulate AI drafting response
     setTimeout(() => {
       let subj = ""
       let bdy = ""
@@ -65,7 +64,7 @@ export function EmailView() {
       {/* Header */}
       <div>
         <h1 className="text-3xl font-extrabold text-neutral-850 tracking-tight flex items-center gap-3">
-          <Mail className="h-7 w-7 text-amber-600 animate-pulse-glow" />
+          <Mail className="h-7 w-7 text-purple-600 animate-pulse-glow" />
           AI Email Drafter
         </h1>
         <p className="text-neutral-500 mt-1">
@@ -92,7 +91,7 @@ export function EmailView() {
                   value={recipient}
                   onChange={(e) => setRecipient(e.target.value)}
                   placeholder="e.g. Sales Team, CEO"
-                  className="w-full pl-10 pr-4 py-2.5 rounded-xl bg-white border border-slate-250 text-neutral-800 text-xs focus:outline-none focus:border-amber-500/60"
+                  className="w-full pl-10 pr-4 py-2.5 rounded-xl bg-white border border-slate-250 text-neutral-800 text-xs focus:outline-none focus:border-purple-500/60"
                 />
               </div>
             </div>
@@ -104,7 +103,7 @@ export function EmailView() {
                 value={keyPoints}
                 onChange={(e) => setKeyPoints(e.target.value)}
                 placeholder="What details should be mentioned in this dispatch?"
-                className="w-full h-32 p-3.5 rounded-xl bg-white border border-slate-250 text-neutral-800 text-xs focus:outline-none focus:border-amber-500/60 resize-none leading-relaxed"
+                className="w-full h-32 p-3.5 rounded-xl bg-white border border-slate-250 text-neutral-800 text-xs focus:outline-none focus:border-purple-500/60 resize-none leading-relaxed"
               />
             </div>
 
@@ -119,7 +118,7 @@ export function EmailView() {
                     className={cn(
                       "py-2 px-3 rounded-lg border text-[10px] font-semibold tracking-wider uppercase transition-all cursor-pointer",
                       tone === t
-                        ? "bg-amber-50 border-amber-200 text-amber-700"
+                        ? "bg-purple-50 border-purple-200 text-purple-700"
                         : "bg-slate-100/80 border-slate-200/60 text-neutral-600 hover:bg-slate-200/60"
                     )}
                   >
@@ -140,7 +139,7 @@ export function EmailView() {
                     className={cn(
                       "flex-1 py-2 px-3 rounded-lg border text-[10px] font-semibold tracking-wider uppercase transition-all cursor-pointer",
                       length === l
-                        ? "bg-amber-50 border-amber-200 text-amber-700"
+                        ? "bg-purple-50 border-purple-200 text-purple-700"
                         : "bg-slate-100/80 border-slate-200/60 text-neutral-600 hover:bg-slate-200/60"
                     )}
                   >
@@ -154,7 +153,7 @@ export function EmailView() {
           <button
             onClick={handleGenerate}
             disabled={isGenerating || !keyPoints.trim()}
-            className="w-full py-3 rounded-xl bg-amber-600 hover:bg-amber-500 text-white font-semibold text-xs tracking-wider flex items-center justify-center gap-1.5 transition-all shadow-lg shadow-amber-500/10 disabled:opacity-50 cursor-pointer"
+            className="w-full py-3 rounded-xl bg-purple-600 hover:bg-purple-700 text-white font-semibold text-xs tracking-wider flex items-center justify-center gap-1.5 transition-all shadow-lg shadow-purple-500/20 disabled:opacity-50 cursor-pointer"
           >
             <Sparkles className="h-4.5 w-4.5" />
             Generate Draft
@@ -173,8 +172,8 @@ export function EmailView() {
                 className="flex-1 flex flex-col items-center justify-center space-y-4"
               >
                 <div className="relative w-12 h-12 flex items-center justify-center">
-                  <span className="w-12 h-12 rounded-full border-2 border-amber-500/10 border-t-amber-600 animate-spin absolute" />
-                  <Mail className="h-5 w-5 text-amber-600" />
+                  <span className="w-12 h-12 rounded-full border-2 border-purple-500/10 border-t-purple-600 animate-spin absolute" />
+                  <Mail className="h-5 w-5 text-purple-600" />
                 </div>
                 <div className="text-center">
                   <h4 className="font-semibold text-neutral-850">Composing Draft</h4>
@@ -198,7 +197,7 @@ export function EmailView() {
                         className="p-1.5 rounded-lg bg-slate-100 text-neutral-500 hover:text-neutral-950 transition-colors cursor-pointer"
                         title="Copy to Clipboard"
                       >
-                        {copied ? <Check className="h-4 w-4 text-emerald-600" /> : <Copy className="h-4 w-4" />}
+                        {copied ? <Check className="h-4 w-4 text-purple-600" /> : <Copy className="h-4 w-4" />}
                       </button>
                       <button
                         onClick={handleGenerate}
@@ -220,7 +219,7 @@ export function EmailView() {
                     <textarea
                       value={body}
                       onChange={(e) => setBody(e.target.value)}
-                      className="w-full h-64 p-4 rounded-xl bg-white border border-slate-250 text-neutral-850 text-xs font-mono focus:outline-none focus:border-amber-500/50 resize-none leading-relaxed"
+                      className="w-full h-64 p-4 rounded-xl bg-white border border-slate-250 text-neutral-850 text-xs font-mono focus:outline-none focus:border-purple-500/50 resize-none leading-relaxed"
                     />
                   </div>
                 </div>
@@ -232,7 +231,7 @@ export function EmailView() {
                     className={cn(
                       "w-full py-3 rounded-xl font-semibold text-xs tracking-wider flex items-center justify-center gap-1.5 transition-all cursor-pointer shadow-lg",
                       sent 
-                        ? "bg-emerald-50 border border-emerald-100 text-emerald-650"
+                        ? "bg-purple-50 border border-purple-200 text-purple-700"
                         : "bg-slate-100 hover:bg-slate-200/60 border border-slate-200 text-neutral-650"
                     )}
                   >

@@ -1,4 +1,5 @@
 import React, { useState, useRef } from "react"
+import { useAuth } from "@/context/AuthContext"
 import { 
   PenTool, 
   Type, 
@@ -11,10 +12,11 @@ import {
 } from "lucide-react"
 
 export function DigitalSignatureView() {
-  const [selectedDoc, setSelectedDoc] = useState("Licensing_Agreement_2026.pdf")
+  const { user } = useAuth()
+  const [selectedDoc, setSelectedDoc] = useState("Document_Signature.pdf")
   const [signatureMode, setSignatureMode] = useState<"draw" | "type" | "upload">("draw")
-  const [typedName, setTypedName] = useState("Jeel Khunt")
-  const [signerTitle, setSignerTitle] = useState("Chief Technology Officer")
+  const [typedName, setTypedName] = useState(user?.name || "Signer Name")
+  const [signerTitle, setSignerTitle] = useState(user?.title || "Authorized Signatory")
   const [isSigned, setIsSigned] = useState(false)
   const [isDrawing, setIsDrawing] = useState(false)
 
@@ -282,7 +284,7 @@ export function DigitalSignatureView() {
               <div className="p-6 rounded-2xl bg-gradient-to-r from-purple-50 via-pink-50 to-amber-50 border border-purple-200 flex flex-col md:flex-row items-center justify-between gap-6">
                 <div>
                   <div className="text-2xl italic font-serif text-purple-950 font-bold mb-1">
-                    {signatureMode === "type" ? typedName : "Jeel Khunt"}
+                    {typedName}
                   </div>
                   <div className="text-xs text-slate-600 font-medium">
                     Signed by <strong>{typedName}</strong> ({signerTitle})
@@ -327,8 +329,8 @@ export function DigitalSignatureView() {
               {/* Signer 1 */}
               <div className="p-3.5 rounded-2xl bg-emerald-50 border border-emerald-200 flex items-center justify-between">
                 <div>
-                  <div className="font-bold text-slate-900">Marcus Vance</div>
-                  <div className="text-slate-500">Operations Director</div>
+                  <div className="font-bold text-slate-900">Operations Lead</div>
+                  <div className="text-slate-500">Executive Director</div>
                 </div>
                 <span className="text-[10px] font-bold px-2 py-0.5 rounded-md bg-emerald-200 text-emerald-800">
                   Signed
@@ -355,8 +357,8 @@ export function DigitalSignatureView() {
               {/* Signer 3 */}
               <div className="p-3.5 rounded-2xl bg-slate-50 border border-slate-200 flex items-center justify-between text-slate-400">
                 <div>
-                  <div className="font-bold text-slate-600">Sarah Jenkins, Esq.</div>
-                  <div>Legal Reviewer</div>
+                  <div className="font-bold text-slate-600">Legal Reviewer</div>
+                  <div>Corporate Legal Counsel</div>
                 </div>
                 <span className="text-[10px] font-bold px-2 py-0.5 rounded-md bg-slate-200 text-slate-600">
                   Waiting

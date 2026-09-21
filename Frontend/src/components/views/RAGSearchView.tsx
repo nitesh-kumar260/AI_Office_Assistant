@@ -23,7 +23,7 @@ interface VectorChunk {
 
 export function RAGSearchView() {
   const [query, setQuery] = useState("What are our indemnification limits for AI model data breaches?")
-  const [vectorWeight, setVectorWeight] = useState(80) // 80% vector, 20% BM25 keyword
+  const [vectorWeight, setVectorWeight] = useState(80)
   const [distanceMetric, setDistanceMetric] = useState<"cosine" | "euclidean">("cosine")
   const [isSearching, setIsSearching] = useState(false)
 
@@ -75,9 +75,9 @@ export function RAGSearchView() {
   return (
     <div className="space-y-8 max-w-7xl mx-auto pb-12">
       {/* Top Banner */}
-      <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 p-6 rounded-3xl bg-gradient-to-r from-cyan-900/10 via-blue-900/5 to-slate-900/10 border border-cyan-500/20 glass-panel">
+      <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 p-6 rounded-3xl bg-gradient-to-r from-purple-900/10 via-indigo-900/5 to-slate-900/10 border border-purple-500/20 glass-panel">
         <div className="flex items-center gap-4">
-          <div className="p-3.5 rounded-2xl bg-gradient-to-tr from-cyan-600 to-blue-600 text-white shadow-lg shadow-cyan-500/30 preserve-3d animate-float-3d">
+          <div className="p-3.5 rounded-2xl bg-gradient-to-tr from-purple-600 to-indigo-600 text-white shadow-lg shadow-purple-500/30 preserve-3d animate-float-3d">
             <Database className="h-7 w-7" />
           </div>
           <div>
@@ -85,7 +85,7 @@ export function RAGSearchView() {
               <h1 className="text-2xl font-black tracking-tight text-slate-900 dark:text-white">
                 RAG Vector Engine & Semantic Search
               </h1>
-              <span className="px-2.5 py-0.5 rounded-full text-xs font-mono font-bold bg-cyan-100 text-cyan-800 border border-cyan-200">
+              <span className="px-2.5 py-0.5 rounded-full text-xs font-mono font-bold bg-purple-100 text-purple-700 border border-purple-200">
                 1536d Hybrid Search
               </span>
             </div>
@@ -97,14 +97,14 @@ export function RAGSearchView() {
 
         <div className="flex items-center gap-3 text-xs font-mono">
           <div className="px-3 py-1.5 rounded-xl bg-white border border-slate-200 text-slate-700 flex items-center gap-2 shadow-sm">
-            <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+            <span className="w-2 h-2 rounded-full bg-purple-500 animate-pulse" />
             Index Status: 1,420 Chunks Active
           </div>
         </div>
       </div>
 
       {/* RAG Query Input Bar */}
-      <div className="p-6 rounded-3xl bg-white border border-slate-200 shadow-sm space-y-4 card-3d-cyan">
+      <div className="p-6 rounded-3xl bg-white border border-slate-200 shadow-sm space-y-4 card-3d">
         <form onSubmit={handleExecuteSearch} className="flex items-center gap-3">
           <div className="relative flex-1">
             <input
@@ -112,14 +112,14 @@ export function RAGSearchView() {
               value={query}
               onChange={(e) => setQuery(e.target.value)}
               placeholder="Ask any semantic query across workspace vector index..."
-              className="w-full pl-11 pr-4 py-3.5 rounded-2xl border border-slate-200 text-sm font-medium focus:ring-2 focus:ring-cyan-500/20 focus:border-cyan-500 outline-none"
+              className="w-full pl-11 pr-4 py-3.5 rounded-2xl border border-slate-200 text-sm font-medium focus:ring-2 focus:ring-purple-500/20 focus:border-purple-500 outline-none"
             />
             <Search className="absolute left-4 top-4 h-4 w-4 text-slate-400" />
           </div>
           <button
             type="submit"
             disabled={isSearching}
-            className="px-6 py-3.5 rounded-2xl bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-700 hover:to-blue-700 text-white font-bold text-xs shadow-lg shadow-cyan-500/20 flex items-center gap-2 cursor-pointer"
+            className="px-6 py-3.5 rounded-2xl bg-gradient-to-r from-purple-600 via-indigo-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white font-bold text-xs shadow-lg shadow-purple-500/20 flex items-center gap-2 cursor-pointer"
           >
             <Sparkles className={`h-4 w-4 ${isSearching ? "animate-spin" : ""}`} />
             {isSearching ? "Retrieving Vector Chunks..." : "Execute RAG Search"}
@@ -130,7 +130,7 @@ export function RAGSearchView() {
         <div className="pt-2 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 text-xs border-t border-slate-100">
           <div className="flex items-center gap-4 flex-1">
             <span className="font-mono font-bold text-slate-500 uppercase flex items-center gap-1.5">
-              <Sliders className="h-3.5 w-3.5 text-cyan-600" /> Hybrid Balance:
+              <Sliders className="h-3.5 w-3.5 text-purple-600" /> Hybrid Balance:
             </span>
             <div className="flex-1 flex items-center gap-3 max-w-xs">
               <span className="font-semibold text-slate-500 text-[11px]">BM25 (20%)</span>
@@ -140,9 +140,9 @@ export function RAGSearchView() {
                 max={100}
                 value={vectorWeight}
                 onChange={(e) => setVectorWeight(Number(e.target.value))}
-                className="flex-1 accent-cyan-600 cursor-pointer"
+                className="flex-1 accent-purple-600 cursor-pointer"
               />
-              <span className="font-semibold text-cyan-700 text-[11px]">Vector ({vectorWeight}%)</span>
+              <span className="font-semibold text-purple-700 text-[11px]">Vector ({vectorWeight}%)</span>
             </div>
           </div>
 
@@ -151,7 +151,7 @@ export function RAGSearchView() {
             <button
               onClick={() => setDistanceMetric("cosine")}
               className={`px-2.5 py-1 rounded-lg text-[11px] font-bold cursor-pointer ${
-                distanceMetric === "cosine" ? "bg-cyan-100 text-cyan-800 border border-cyan-200" : "bg-slate-100 text-slate-600"
+                distanceMetric === "cosine" ? "bg-purple-100 text-purple-700 border border-purple-200" : "bg-slate-100 text-slate-600"
               }`}
             >
               Cosine Similarity
@@ -159,7 +159,7 @@ export function RAGSearchView() {
             <button
               onClick={() => setDistanceMetric("euclidean")}
               className={`px-2.5 py-1 rounded-lg text-[11px] font-bold cursor-pointer ${
-                distanceMetric === "euclidean" ? "bg-cyan-100 text-cyan-800 border border-cyan-200" : "bg-slate-100 text-slate-600"
+                distanceMetric === "euclidean" ? "bg-purple-100 text-purple-700 border border-purple-200" : "bg-slate-100 text-slate-600"
               }`}
             >
               Euclidean
@@ -171,7 +171,7 @@ export function RAGSearchView() {
       {/* RAG Pipeline Flow Visualization Bar */}
       <div className="p-4 rounded-2xl bg-slate-900 text-white flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono shadow-md">
         <div className="flex items-center gap-2">
-          <span className="p-1.5 rounded-lg bg-cyan-500/20 text-cyan-400"><Cpu className="h-4 w-4" /></span>
+          <span className="p-1.5 rounded-lg bg-purple-500/20 text-purple-400"><Cpu className="h-4 w-4" /></span>
           <span>1. User Query Embedding</span>
         </div>
         <ArrowRight className="h-4 w-4 text-slate-600 hidden sm:block" />
@@ -181,12 +181,12 @@ export function RAGSearchView() {
         </div>
         <ArrowRight className="h-4 w-4 text-slate-600 hidden sm:block" />
         <div className="flex items-center gap-2">
-          <span className="p-1.5 rounded-lg bg-emerald-500/20 text-emerald-400"><Zap className="h-4 w-4" /></span>
+          <span className="p-1.5 rounded-lg bg-purple-500/20 text-purple-400"><Zap className="h-4 w-4" /></span>
           <span>3. Hybrid Re-Ranking</span>
         </div>
         <ArrowRight className="h-4 w-4 text-slate-600 hidden sm:block" />
         <div className="flex items-center gap-2">
-          <span className="p-1.5 rounded-lg bg-pink-500/20 text-pink-400"><Sparkles className="h-4 w-4" /></span>
+          <span className="p-1.5 rounded-lg bg-purple-500/20 text-purple-400"><Sparkles className="h-4 w-4" /></span>
           <span>4. LLM Context Generation</span>
         </div>
       </div>
@@ -195,16 +195,16 @@ export function RAGSearchView() {
       <div className="space-y-4">
         <div className="flex items-center justify-between">
           <h2 className="text-base font-bold text-slate-900 flex items-center gap-2">
-            <Layers className="h-4 w-4 text-cyan-600" /> Top {chunks.length} Retrieved Semantic Vector Chunks
+            <Layers className="h-4 w-4 text-purple-600" /> Top {chunks.length} Retrieved Semantic Vector Chunks
           </h2>
           <span className="text-xs text-slate-400 font-mono">Query Execution Time: 28ms</span>
         </div>
 
         {chunks.map((chunk) => (
-          <div key={chunk.id} className="p-6 rounded-3xl bg-white border border-slate-200 shadow-sm space-y-4 hover:border-cyan-300 transition-all card-3d-cyan">
+          <div key={chunk.id} className="p-6 rounded-3xl bg-white border border-slate-200 shadow-sm space-y-4 hover:border-purple-300 transition-all card-3d">
             <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 pb-3 border-b border-slate-100 min-w-0">
               <div className="flex items-start sm:items-center gap-3 min-w-0 flex-1 w-full">
-                <span className="p-2 rounded-xl bg-cyan-50 text-cyan-700 font-mono text-xs font-bold border border-cyan-200 shrink-0">
+                <span className="p-2 rounded-xl bg-purple-50 text-purple-700 font-mono text-xs font-bold border border-purple-200 shrink-0">
                   {chunk.id}
                 </span>
                 <div className="min-w-0 flex-1">
@@ -216,7 +216,7 @@ export function RAGSearchView() {
               </div>
 
               <div className="flex flex-wrap items-center gap-3 font-mono shrink-0 mt-2 sm:mt-0">
-                <div className="px-3 py-1 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-700 text-[10px] sm:text-xs font-bold">
+                <div className="px-3 py-1 rounded-full bg-purple-50 border border-purple-200 text-purple-700 text-[10px] sm:text-xs font-bold">
                   {chunk.similarityScore}% Match Score
                 </div>
                 <div className="text-[11px] text-slate-400">
