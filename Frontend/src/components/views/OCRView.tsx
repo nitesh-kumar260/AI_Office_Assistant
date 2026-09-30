@@ -138,7 +138,7 @@ export function OCRView() {
                   handleFileUpload(e.dataTransfer.files[0])
                 }
               }}
-              className="glass-panel p-12 rounded-2xl border-slate-200/80 flex flex-col items-center justify-center text-center space-y-4 min-h-[320px] border-dashed border-2 border-slate-250 hover:border-purple-500/50 transition-all cursor-pointer group"
+              className="glass-panel p-6 sm:p-12 rounded-2xl border-slate-200/80 flex flex-col items-center justify-center text-center space-y-4 min-h-[260px] sm:min-h-[320px] border-dashed border-2 border-slate-250 hover:border-purple-500/50 transition-all cursor-pointer group"
             >
               <div className="w-16 h-16 rounded-full bg-purple-50 border border-purple-200 flex items-center justify-center text-purple-600 group-hover:scale-110 transition-transform">
                 <Upload className="h-6 w-6" />

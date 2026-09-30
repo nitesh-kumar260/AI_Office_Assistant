@@ -85,18 +85,18 @@ export function SearchView({ onSelectDocForChat }: SearchViewProps) {
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             placeholder="Ask anything (e.g., 'What is our remote work policy?')"
-            className="w-full pl-12 pr-32 py-4 rounded-2xl bg-white border border-slate-200 text-neutral-800 placeholder-neutral-400 focus:outline-none focus:border-purple-500 focus:ring-1 focus:ring-purple-100 transition-all font-medium text-sm"
+            className="w-full pl-11 sm:pl-12 pr-24 sm:pr-32 py-3.5 sm:py-4 rounded-2xl bg-white border border-slate-200 text-neutral-800 placeholder-neutral-400 focus:outline-none focus:border-purple-500 focus:ring-1 focus:ring-purple-100 transition-all font-medium text-xs sm:text-sm"
           />
           <button
             type="submit"
             disabled={isSearching}
-            className="absolute right-2 px-6 py-2.5 rounded-xl bg-purple-600 hover:bg-purple-700 text-white font-semibold text-xs tracking-wider flex items-center gap-1.5 transition-all shadow-lg shadow-purple-500/20 cursor-pointer disabled:opacity-50"
+            className="absolute right-2 px-3.5 sm:px-6 py-2 sm:py-2.5 rounded-xl bg-purple-600 hover:bg-purple-700 text-white font-semibold text-xs tracking-wider flex items-center gap-1.5 transition-all shadow-lg shadow-purple-500/20 cursor-pointer disabled:opacity-50"
           >
             {isSearching ? (
               <span className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
             ) : (
               <>
-                Query
+                <span className="hidden xs:inline">Query</span>
                 <ArrowRight className="h-3.5 w-3.5" />
               </>
             )}
@@ -105,12 +105,12 @@ export function SearchView({ onSelectDocForChat }: SearchViewProps) {
 
         {/* Suggestion tags */}
         <div className="flex flex-wrap items-center gap-2 text-xs">
-          <span className="text-neutral-400 font-semibold uppercase tracking-wider font-mono">Suggestions:</span>
+          <span className="text-neutral-400 font-semibold uppercase tracking-wider font-mono text-[10px] sm:text-xs">Suggestions:</span>
           {["remote work policy", "q3 goals", "security audit"].map((tag) => (
             <button
               key={tag}
               onClick={() => handleSearch(tag)}
-              className="px-3.5 py-1.5 rounded-lg bg-slate-100 border border-slate-200/80 text-neutral-600 hover:bg-slate-200/60 hover:border-purple-300 transition-all cursor-pointer font-medium"
+              className="px-3 py-1 sm:px-3.5 sm:py-1.5 rounded-lg bg-slate-100 border border-slate-200/80 text-neutral-600 hover:bg-slate-200/60 hover:border-purple-300 transition-all cursor-pointer font-medium text-xs"
             >
               "{tag}"
             </button>
@@ -127,7 +127,7 @@ export function SearchView({ onSelectDocForChat }: SearchViewProps) {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="glass-panel p-10 rounded-2xl border-slate-200/80 flex flex-col items-center justify-center space-y-4"
+              className="glass-panel p-6 sm:p-10 rounded-2xl border-slate-200/80 flex flex-col items-center justify-center space-y-4"
             >
               <div className="relative w-12 h-12 flex items-center justify-center">
                 <span className="w-12 h-12 rounded-full border-2 border-purple-500/10 border-t-purple-600 animate-spin absolute" />
@@ -156,16 +156,16 @@ export function SearchView({ onSelectDocForChat }: SearchViewProps) {
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: i * 0.1 }}
-                  className="glass-card p-6 rounded-2xl border border-slate-200/80 hover:border-purple-500/45 flex flex-col md:flex-row md:items-start justify-between gap-6"
+                  className="glass-card p-4 sm:p-6 rounded-2xl border border-slate-200/80 hover:border-purple-500/45 flex flex-col md:flex-row md:items-start justify-between gap-4 md:gap-6"
                 >
-                  <div className="space-y-3 flex-1">
-                    <div className="flex items-center gap-3">
-                      <div className="p-2 rounded-xl bg-purple-50 border border-purple-200 text-purple-600">
+                  <div className="space-y-3 flex-1 min-w-0">
+                    <div className="flex items-start gap-3 min-w-0">
+                      <div className="p-2 rounded-xl bg-purple-50 border border-purple-200 text-purple-600 shrink-0">
                         <FileText className="h-5 w-5" />
                       </div>
-                      <div>
-                        <h3 className="font-bold text-neutral-850 tracking-wide">{result.name}</h3>
-                        <div className="flex gap-3 text-[10px] text-neutral-400 font-mono mt-0.5">
+                      <div className="min-w-0 flex-1">
+                        <h3 className="font-bold text-neutral-850 tracking-wide break-all">{result.name}</h3>
+                        <div className="flex flex-wrap gap-2 text-[10px] text-neutral-400 font-mono mt-0.5">
                           <span>{result.type}</span>
                           <span>•</span>
                           <span>{result.size}</span>
@@ -175,27 +175,27 @@ export function SearchView({ onSelectDocForChat }: SearchViewProps) {
                       </div>
                     </div>
 
-                    <p className="text-xs text-neutral-600 bg-slate-50 p-4 rounded-xl border border-slate-200/60 leading-relaxed italic">
+                    <p className="text-xs text-neutral-600 bg-slate-50 p-3 sm:p-4 rounded-xl border border-slate-200/60 leading-relaxed italic break-words">
                       {result.snippet}
                     </p>
                   </div>
 
-                  <div className="flex flex-col items-end justify-between self-stretch shrink-0">
+                  <div className="flex flex-row md:flex-col items-center md:items-end justify-between w-full md:w-auto shrink-0 border-t md:border-t-0 border-slate-100 pt-3 md:pt-0">
                     <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-purple-50 border border-purple-200 text-purple-600 text-xs font-bold font-mono">
                       <Sparkles className="h-3.5 w-3.5 animate-pulse" />
                       {(result.similarity * 100).toFixed(1)}% Match
                     </div>
 
-                    <div className="flex gap-2 mt-4 md:mt-0">
+                    <div className="flex gap-2">
                       <button
                         onClick={() => onSelectDocForChat(result.name)}
-                        className="px-4 py-2 rounded-xl bg-slate-100 hover:bg-purple-50 border border-slate-200 hover:border-purple-200 text-neutral-650 hover:text-purple-600 font-semibold text-xs transition-all flex items-center gap-1.5 cursor-pointer"
+                        className="px-3.5 sm:px-4 py-1.5 sm:py-2 rounded-xl bg-slate-100 hover:bg-purple-50 border border-slate-200 hover:border-purple-200 text-neutral-650 hover:text-purple-600 font-semibold text-xs transition-all flex items-center gap-1.5 cursor-pointer"
                       >
                         <MessageSquare className="h-3.5 w-3.5" />
                         Chat
                       </button>
                       <button
-                        className="px-4 py-2 rounded-xl bg-slate-100 hover:bg-slate-200/60 border border-slate-200 text-neutral-650 font-semibold text-xs transition-all flex items-center gap-1.5 cursor-pointer"
+                        className="px-3.5 sm:px-4 py-1.5 sm:py-2 rounded-xl bg-slate-100 hover:bg-slate-200/60 border border-slate-200 text-neutral-650 font-semibold text-xs transition-all flex items-center gap-1.5 cursor-pointer"
                       >
                         <Eye className="h-3.5 w-3.5" />
                         Preview

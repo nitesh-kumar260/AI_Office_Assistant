@@ -19,35 +19,35 @@ export function AuthModal() {
   }
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-md animate-in fade-in duration-200">
-      <div className="relative w-full max-w-lg bg-white/90 dark:bg-slate-900/90 rounded-3xl border border-purple-500/30 shadow-2xl overflow-hidden glass-panel perspective-1000">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-slate-900/60 backdrop-blur-md animate-in fade-in duration-200">
+      <div className="relative w-full max-w-lg max-h-[90vh] overflow-y-auto bg-white/90 dark:bg-slate-900/90 rounded-3xl border border-purple-500/30 shadow-2xl glass-panel perspective-1000">
 
         {/* Glow Header Accent */}
-        <div className="h-2 w-full bg-gradient-to-r from-purple-600 via-blue-500 to-cyan-400" />
+        <div className="h-2 w-full bg-gradient-to-r from-purple-600 via-blue-500 to-cyan-400 shrink-0" />
 
         {/* Modal Header */}
-        <div className="px-8 pt-6 pb-4 flex items-center justify-between border-b border-slate-200/80">
-          <div className="flex items-center gap-3">
-            <div className="p-2.5 rounded-2xl bg-purple-600/10 text-purple-600 border border-purple-200">
-              <ShieldCheck className="h-6 w-6 animate-pulse-glow" />
+        <div className="px-4 sm:px-8 pt-5 sm:pt-6 pb-4 flex items-center justify-between border-b border-slate-200/80 sticky top-0 bg-white/95 dark:bg-slate-900/95 backdrop-blur-md z-10">
+          <div className="flex items-center gap-2.5 sm:gap-3 min-w-0">
+            <div className="p-2 sm:p-2.5 rounded-2xl bg-purple-600/10 text-purple-600 border border-purple-200 shrink-0">
+              <ShieldCheck className="h-5 w-5 sm:h-6 sm:w-6 animate-pulse-glow" />
             </div>
-            <div>
-              <h2 className="text-xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
-                Ornitech Enterprise Portal
-                <span className="text-[10px] px-2 py-0.5 rounded-full bg-purple-100 text-purple-700 font-mono font-semibold">v2.5 3D</span>
+            <div className="min-w-0">
+              <h2 className="text-base sm:text-xl font-bold text-slate-900 dark:text-white flex flex-wrap items-center gap-1.5 sm:gap-2">
+                <span className="truncate">Ornitech Portal</span>
+                <span className="text-[10px] px-2 py-0.5 rounded-full bg-purple-100 text-purple-700 font-mono font-semibold shrink-0">v2.5 3D</span>
               </h2>
-              <p className="text-xs text-slate-500">Secure SSO & Role-Based Access Control System</p>
+              <p className="text-[11px] sm:text-xs text-slate-500 truncate">Secure SSO & Role Access</p>
             </div>
           </div>
           <button
             onClick={() => setIsAuthModalOpen(false)}
-            className="p-2 rounded-xl text-slate-400 hover:text-slate-700 hover:bg-slate-100 transition-colors cursor-pointer"
+            className="p-1.5 sm:p-2 rounded-xl text-slate-400 hover:text-slate-700 hover:bg-slate-100 transition-colors cursor-pointer shrink-0"
           >
             <X className="h-5 w-5" />
           </button>
         </div>
 
-        <div className="p-8 space-y-6">
+        <div className="p-4 sm:p-6 md:p-8 space-y-6">
           {/* Form Tabs */}
           <div className="flex bg-slate-100 p-1 rounded-2xl">
             <button

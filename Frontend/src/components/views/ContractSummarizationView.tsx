@@ -171,14 +171,14 @@ export function ContractSummarizationView() {
             </span>
           </div>
 
-          <div className="my-6 flex items-center gap-5">
-            <div className="relative w-20 h-20 flex items-center justify-center rounded-3xl bg-gradient-to-tr from-blue-600 to-indigo-600 text-white font-black text-2xl shadow-xl shadow-blue-500/20">
+          <div className="my-4 sm:my-6 flex items-center gap-3 sm:gap-5">
+            <div className="relative w-16 h-16 sm:w-20 sm:h-20 shrink-0 flex items-center justify-center rounded-2xl sm:rounded-3xl bg-gradient-to-tr from-blue-600 to-indigo-600 text-white font-black text-xl sm:text-2xl shadow-xl shadow-blue-500/20">
               {current.overallRisk}
-              <span className="text-xs font-normal text-blue-200">/100</span>
+              <span className="text-[10px] sm:text-xs font-normal text-blue-200">/100</span>
             </div>
             <div>
-              <div className="text-sm font-bold text-slate-900">Safety Index Rating</div>
-              <div className="text-xs text-slate-500 mt-1">
+              <div className="text-xs sm:text-sm font-bold text-slate-900">Safety Index Rating</div>
+              <div className="text-[11px] sm:text-xs text-slate-500 mt-0.5 sm:mt-1">
                 Parsed across 4 critical risk dimensions: Liability, Financial Escalation, SLA, and IP Retention.
               </div>
             </div>

@@ -104,22 +104,22 @@ export function RAGSearchView() {
       </div>
 
       {/* RAG Query Input Bar */}
-      <div className="p-6 rounded-3xl bg-white border border-slate-200 shadow-sm space-y-4 card-3d">
-        <form onSubmit={handleExecuteSearch} className="flex items-center gap-3">
+      <div className="p-4 sm:p-6 rounded-3xl bg-white border border-slate-200 shadow-sm space-y-4 card-3d">
+        <form onSubmit={handleExecuteSearch} className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
           <div className="relative flex-1">
             <input
               type="text"
               value={query}
               onChange={(e) => setQuery(e.target.value)}
               placeholder="Ask any semantic query across workspace vector index..."
-              className="w-full pl-11 pr-4 py-3.5 rounded-2xl border border-slate-200 text-sm font-medium focus:ring-2 focus:ring-purple-500/20 focus:border-purple-500 outline-none"
+              className="w-full pl-11 pr-4 py-3 sm:py-3.5 rounded-2xl border border-slate-200 text-xs sm:text-sm font-medium focus:ring-2 focus:ring-purple-500/20 focus:border-purple-500 outline-none"
             />
-            <Search className="absolute left-4 top-4 h-4 w-4 text-slate-400" />
+            <Search className="absolute left-4 top-3.5 sm:top-4 h-4 w-4 text-slate-400" />
           </div>
           <button
             type="submit"
             disabled={isSearching}
-            className="px-6 py-3.5 rounded-2xl bg-gradient-to-r from-purple-600 via-indigo-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white font-bold text-xs shadow-lg shadow-purple-500/20 flex items-center gap-2 cursor-pointer"
+            className="px-5 sm:px-6 py-3 sm:py-3.5 rounded-2xl bg-gradient-to-r from-purple-600 via-indigo-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white font-bold text-xs shadow-lg shadow-purple-500/20 flex items-center justify-center gap-2 cursor-pointer shrink-0"
           >
             <Sparkles className={`h-4 w-4 ${isSearching ? "animate-spin" : ""}`} />
             {isSearching ? "Retrieving Vector Chunks..." : "Execute RAG Search"}

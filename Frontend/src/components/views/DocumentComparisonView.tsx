@@ -264,7 +264,7 @@ export function DocumentComparisonView() {
           </button>
         </div>
 
-        <div className="flex items-center gap-2">
+        <div className="flex flex-wrap items-center gap-2">
           <span className="text-xs font-mono font-bold text-slate-500 uppercase flex items-center gap-1">
             <Filter className="h-3.5 w-3.5" /> Filter Risk:
           </span>

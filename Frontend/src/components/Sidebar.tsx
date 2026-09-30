@@ -160,7 +160,7 @@ export function Sidebar({
         </div>
 
         {/* Navigation Sections */}
-        <nav className="flex-1 px-3 py-4 space-y-5 overflow-y-auto max-h-[calc(100vh-8rem)]">
+        <nav className="flex-1 px-3 py-4 space-y-5 overflow-y-auto min-h-0">
           {categories.map((cat, idx) => (
             <div key={idx} className="space-y-1">
               {(!isCollapsed || isMobileOpen) && (

@@ -165,20 +165,20 @@ export function ChatView({ initialSelectedDoc, clearInitialDoc }: ChatViewProps)
       </div>
 
       {/* Main Chat Interface */}
-      <div className="glass-panel rounded-2xl border-slate-200/80 lg:col-span-3 flex flex-col h-[500px] lg:h-full overflow-hidden">
+      <div className="glass-panel rounded-2xl border-slate-200/80 lg:col-span-3 flex flex-col h-[420px] sm:h-[500px] lg:h-full overflow-hidden">
         {/* Chat History */}
-        <div className="flex-1 p-6 overflow-y-auto space-y-4">
+        <div className="flex-1 p-4 sm:p-6 overflow-y-auto space-y-4">
           {messages.map((msg, i) => (
             <div
               key={i}
               className={cn(
-                "flex flex-col max-w-[85%] space-y-1",
+                "flex flex-col max-w-[90%] sm:max-w-[85%] space-y-1",
                 msg.role === "user" ? "ml-auto items-end" : "mr-auto items-start"
               )}
             >
               <div
                 className={cn(
-                  "p-4 rounded-2xl text-xs leading-relaxed font-medium shadow-sm",
+                  "p-3.5 sm:p-4 rounded-2xl text-xs leading-relaxed font-medium shadow-sm break-words",
                   msg.role === "user"
                     ? "bg-purple-600 text-white rounded-br-none"
                     : "bg-slate-100 text-neutral-850 rounded-bl-none border border-slate-200/80"
@@ -192,7 +192,7 @@ export function ChatView({ initialSelectedDoc, clearInitialDoc }: ChatViewProps)
                   {msg.citations.map((cit, idx) => (
                     <span
                       key={idx}
-                      className="px-2 py-0.5 rounded-md bg-purple-100 text-purple-700 font-mono text-[9px] font-bold border border-purple-200"
+                      className="px-2 py-0.5 rounded-md bg-purple-100 text-purple-700 font-mono text-[9px] font-bold border border-purple-200 truncate max-w-[180px] sm:max-w-xs"
                     >
                       Source: {cit}
                     </span>

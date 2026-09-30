@@ -240,7 +240,7 @@ export function Upload_doc() {
             onDragOver={handleDrag}
             onDragLeave={handleDrag}
             onDrop={handleDrop}
-            className={`p-8 rounded-3xl border-2 border-dashed transition-all relative overflow-hidden flex flex-col items-center justify-center min-h-[300px] text-center bg-white shadow-sm ${
+            className={`p-6 sm:p-8 rounded-3xl border-2 border-dashed transition-all relative overflow-hidden flex flex-col items-center justify-center min-h-[260px] sm:min-h-[300px] text-center bg-white shadow-sm ${
               dragActive 
                 ? "border-purple-600 bg-purple-50/30 shadow-lg shadow-purple-500/5 ring-4 ring-purple-500/10" 
                 : "border-slate-300 hover:border-purple-400 hover:shadow-md"
@@ -398,7 +398,7 @@ export function Upload_doc() {
                         </div>
                       </div>
 
-                      <div className="flex items-center gap-1.5 self-end sm:self-start group-hover:opacity-100 sm:opacity-0 transition-opacity">
+                      <div className="flex items-center gap-1.5 self-end sm:self-start opacity-100 sm:opacity-0 sm:group-hover:opacity-100 transition-opacity">
                         <button 
                           onClick={() => handleDeleteDoc(doc._id)}
                           className="p-2 text-rose-500 hover:text-rose-700 hover:bg-rose-50 rounded-lg transition-all cursor-pointer"

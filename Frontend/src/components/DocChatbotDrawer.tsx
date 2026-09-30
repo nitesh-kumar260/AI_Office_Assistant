@@ -502,10 +502,10 @@ export function DocChatbotDrawer({ isOpen, onClose }: DocChatbotDrawerProps) {
               key={idx}
               onClick={() => handleSendQuery(prompt)}
               disabled={isTyping || selectedDocs.length === 0}
-              className="px-3 py-1.5 rounded-xl bg-white border border-slate-200 text-[11px] font-semibold text-slate-700 hover:text-purple-700 hover:border-purple-300 hover:bg-purple-50/60 transition-all shrink-0 cursor-pointer disabled:opacity-50 flex items-center gap-1.5 shadow-2xs"
+              className="px-3 py-1.5 rounded-xl bg-white border border-slate-200 text-[11px] font-semibold text-slate-700 hover:text-purple-700 hover:border-purple-300 hover:bg-purple-50/60 transition-all shrink-0 cursor-pointer disabled:opacity-50 flex items-center gap-1.5 shadow-2xs whitespace-nowrap"
             >
-              <Sparkles className="h-3 w-3 text-purple-600" />
-              <span>{prompt}</span>
+              <Sparkles className="h-3 w-3 text-purple-600 shrink-0" />
+              <span className="whitespace-nowrap">{prompt}</span>
             </button>
           ))}
         </div>

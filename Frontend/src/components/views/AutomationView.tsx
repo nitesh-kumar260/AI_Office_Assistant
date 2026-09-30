@@ -90,11 +90,11 @@ export function AutomationView() {
       </div>
 
       {/* Visual Canvas */}
-      <div className="glass-panel p-8 rounded-2xl border-slate-200/80 relative min-h-[300px] flex flex-col justify-center overflow-x-auto">
+      <div className="glass-panel p-4 sm:p-8 rounded-2xl border-slate-200/80 relative min-h-[300px] flex flex-col justify-center overflow-x-auto">
         {/* Holographic background grid */}
         <div className="absolute inset-0 cyber-grid opacity-30 pointer-events-none" />
 
-        <div className="relative flex flex-col lg:flex-row items-center justify-start lg:justify-center gap-8 lg:gap-4 w-full min-w-max py-4">
+        <div className="relative flex flex-col lg:flex-row items-center justify-start lg:justify-center gap-6 lg:gap-4 w-full min-w-max py-4">
           {nodes.map((node, index) => {
             const isActive = node.active
             const isProcessing = isRunning && index === activeStep
@@ -107,7 +107,7 @@ export function AutomationView() {
                   onClick={() => handleToggleNode(node.id)}
                   disabled={isRunning}
                   className={cn(
-                    "w-60 p-5 rounded-2xl text-left border transition-all relative flex flex-col justify-between cursor-pointer",
+                    "w-full max-w-xs lg:w-60 p-4 sm:p-5 rounded-2xl text-left border transition-all relative flex flex-col justify-between cursor-pointer",
                     !isActive 
                       ? "bg-slate-100/40 border-slate-200/60 opacity-55 text-neutral-450"
                       : isProcessing

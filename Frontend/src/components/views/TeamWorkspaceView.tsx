@@ -333,7 +333,7 @@ export function TeamWorkspaceView() {
       {/* Invite Modal Overlay */}
       {showInviteModal && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-md">
-          <div className="w-full max-w-md bg-white rounded-3xl p-6 shadow-2xl space-y-4 border border-purple-200">
+          <div className="w-full max-w-md max-h-[90vh] overflow-y-auto bg-white rounded-3xl p-6 shadow-2xl space-y-4 border border-purple-200">
             <h3 className="font-bold text-slate-900 text-base">Invite Team Member</h3>
             <form onSubmit={handleInviteMember} className="space-y-4">
               <div>

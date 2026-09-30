@@ -284,7 +284,7 @@ export function Extract_Info() {
       </div>
 
       {/* Select document type selectors */}
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4">
         {(["invoice", "pan", "aadhaar", "gst"] as DocType[]).map((type) => {
           const isActive = activeType === type;
           const config = {
@@ -298,7 +298,7 @@ export function Extract_Info() {
             <button
               key={type}
               onClick={() => setActiveType(type)}
-              className={`p-5 rounded-2xl border transition-all text-left flex flex-col justify-between h-28 cursor-pointer relative overflow-hidden group ${isActive
+              className={`p-3.5 sm:p-5 rounded-2xl border transition-all text-left flex flex-col justify-between h-auto min-h-[6.5rem] cursor-pointer relative overflow-hidden group ${isActive
                 ? `border-purple-600 shadow-md ring-2 ring-purple-500/10`
                 : "border-slate-200 bg-white hover:border-purple-300 hover:shadow"
                 }`}
@@ -307,14 +307,14 @@ export function Extract_Info() {
                 <div className={`absolute top-0 right-0 w-24 h-24 bg-gradient-to-tr ${getDocTypeColor(type).split(" ")[0]} ${getDocTypeColor(type).split(" ")[1]} opacity-5 rounded-bl-full pointer-events-none`} />
               )}
 
-              <div className={`p-2.5 rounded-xl border shrink-0 ${isActive ? getDocTypeColor(type).split(" ").slice(2).join(" ") : "bg-slate-50 border-slate-100 text-slate-500 group-hover:text-purple-600 transition-colors"
+              <div className={`p-2 sm:p-2.5 rounded-xl border shrink-0 w-fit ${isActive ? getDocTypeColor(type).split(" ").slice(2).join(" ") : "bg-slate-50 border-slate-100 text-slate-500 group-hover:text-purple-600 transition-colors"
                 }`}>
                 {getDocTypeIcon(type)}
               </div>
 
-              <div>
-                <h4 className="text-sm font-bold text-slate-800">{config.label}</h4>
-                <p className="text-[10px] text-slate-400 mt-0.5">{config.desc}</p>
+              <div className="mt-2">
+                <h4 className="text-xs sm:text-sm font-bold text-slate-800 leading-tight">{config.label}</h4>
+                <p className="text-[10px] text-slate-400 mt-0.5 truncate">{config.desc}</p>
               </div>
             </button>
           );
@@ -487,7 +487,7 @@ export function Extract_Info() {
 
                       <button
                         onClick={() => handleCopy(val, key)}
-                        className="p-2 text-slate-400 hover:text-purple-600 hover:bg-purple-50 rounded-lg opacity-0 group-hover:opacity-100 transition-all cursor-pointer shrink-0"
+                        className="p-2 text-slate-400 hover:text-purple-600 hover:bg-purple-50 rounded-lg opacity-100 sm:opacity-0 sm:group-hover:opacity-100 transition-all cursor-pointer shrink-0"
                         title="Copy to Clipboard"
                       >
                         {copySuccess === key ? (

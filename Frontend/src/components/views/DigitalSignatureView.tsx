@@ -30,8 +30,11 @@ export function DigitalSignatureView() {
     if (!ctx) return
 
     const rect = canvas.getBoundingClientRect()
+    const scaleX = canvas.width / rect.width
+    const scaleY = canvas.height / rect.height
+
     ctx.beginPath()
-    ctx.moveTo(e.clientX - rect.left, e.clientY - rect.top)
+    ctx.moveTo((e.clientX - rect.left) * scaleX, (e.clientY - rect.top) * scaleY)
     ctx.strokeStyle = "#7c3aed"
     ctx.lineWidth = 3
     ctx.lineCap = "round"
@@ -46,7 +49,10 @@ export function DigitalSignatureView() {
     if (!ctx) return
 
     const rect = canvas.getBoundingClientRect()
-    ctx.lineTo(e.clientX - rect.left, e.clientY - rect.top)
+    const scaleX = canvas.width / rect.width
+    const scaleY = canvas.height / rect.height
+
+    ctx.lineTo((e.clientX - rect.left) * scaleX, (e.clientY - rect.top) * scaleY)
     ctx.stroke()
   }
 
@@ -180,10 +186,12 @@ export function DigitalSignatureView() {
                         const canvas = canvasRef.current
                         if (!canvas) return
                         const rect = canvas.getBoundingClientRect()
+                        const scaleX = canvas.width / rect.width
+                        const scaleY = canvas.height / rect.height
                         const ctx = canvas.getContext("2d")
                         if (!ctx) return
                         ctx.beginPath()
-                        ctx.moveTo(touch.clientX - rect.left, touch.clientY - rect.top)
+                        ctx.moveTo((touch.clientX - rect.left) * scaleX, (touch.clientY - rect.top) * scaleY)
                         ctx.strokeStyle = "#7c3aed"
                         ctx.lineWidth = 3
                         setIsDrawing(true)
@@ -194,9 +202,11 @@ export function DigitalSignatureView() {
                         const canvas = canvasRef.current
                         if (!canvas) return
                         const rect = canvas.getBoundingClientRect()
+                        const scaleX = canvas.width / rect.width
+                        const scaleY = canvas.height / rect.height
                         const ctx = canvas.getContext("2d")
                         if (!ctx) return
-                        ctx.lineTo(touch.clientX - rect.left, touch.clientY - rect.top)
+                        ctx.lineTo((touch.clientX - rect.left) * scaleX, (touch.clientY - rect.top) * scaleY)
                         ctx.stroke()
                       }}
                       onTouchEnd={() => setIsDrawing(false)}
@@ -224,7 +234,7 @@ export function DigitalSignatureView() {
 
                   {/* Cursive Font Preview Box */}
                   <div className="p-6 rounded-2xl bg-purple-50/50 border border-purple-200 text-center">
-                    <span className="text-3xl italic font-serif tracking-widest text-purple-900 font-semibold">
+                    <span className="text-2xl sm:text-3xl italic font-serif tracking-widest text-purple-900 font-semibold break-words">
                       {typedName || "Signature Preview"}
                     </span>
                   </div>
@@ -232,7 +242,7 @@ export function DigitalSignatureView() {
               )}
 
               {/* Signer Title */}
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
                   <label className="block text-xs font-semibold text-slate-700 mb-1">Signer Title</label>
                   <input

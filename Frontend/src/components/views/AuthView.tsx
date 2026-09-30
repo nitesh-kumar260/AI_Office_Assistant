@@ -33,21 +33,21 @@ export function AuthView({ onNavigateToDashboard }: AuthViewProps) {
     <div className="space-y-8 max-w-4xl mx-auto pb-12 scroll-3d-perspective">
       
       {/* Hero Header with 3D Float */}
-      <div className="flex flex-col md:flex-row items-center justify-between gap-6 p-8 rounded-3xl bg-gradient-to-r from-purple-900/15 via-indigo-900/10 to-slate-900/15 border border-purple-500/30 glass-panel preserve-3d animate-float-3d">
-        <div className="flex items-start gap-4 min-w-0">
-          <div className="p-4 rounded-2xl bg-gradient-to-tr from-purple-600 via-indigo-600 to-cyan-500 text-white shadow-xl shadow-purple-500/30 preserve-3d shrink-0">
-            <Terminal className="h-8 w-8 animate-pulse" />
+      <div className="flex flex-col md:flex-row items-center justify-between gap-6 p-4 sm:p-6 md:p-8 rounded-3xl bg-gradient-to-r from-purple-900/15 via-indigo-900/10 to-slate-900/15 border border-purple-500/30 glass-panel preserve-3d animate-float-3d">
+        <div className="flex items-start gap-3 sm:gap-4 min-w-0 w-full md:w-auto">
+          <div className="p-3 sm:p-4 rounded-2xl bg-gradient-to-tr from-purple-600 via-indigo-600 to-cyan-500 text-white shadow-xl shadow-purple-500/30 preserve-3d shrink-0">
+            <Terminal className="h-6 w-6 sm:h-8 sm:w-8 animate-pulse" />
           </div>
-          <div className="min-w-0">
+          <div className="min-w-0 flex-1">
             <div className="flex flex-wrap items-center gap-2">
-              <h1 className="text-2xl sm:text-3xl font-black tracking-tight text-slate-900 dark:text-white">
+              <h1 className="text-xl sm:text-2xl md:text-3xl font-black tracking-tight text-slate-900 dark:text-white">
                 Ornitech Authentication Portal
               </h1>
-              <span className="px-3 py-0.5 rounded-full text-xs font-mono font-bold bg-purple-100 text-purple-700 border border-purple-200 shrink-0">
+              <span className="px-2.5 py-0.5 rounded-full text-[10px] sm:text-xs font-mono font-bold bg-purple-100 text-purple-700 border border-purple-200 shrink-0">
                 Client Ready 3D
               </span>
             </div>
-            <p className="text-sm text-slate-500 mt-1">
+            <p className="text-xs sm:text-sm text-slate-500 mt-1">
               Enterprise Single Sign-On (SSO), Role-Based Access Control (RBAC), and 3D security verification.
             </p>
           </div>
@@ -75,13 +75,13 @@ export function AuthView({ onNavigateToDashboard }: AuthViewProps) {
       </div>
 
       {/* Main Form Container */}
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 md:gap-8 items-start">
         
         {/* Security Safeguards Info Box */}
         <div className="lg:col-span-4 space-y-4">
-          <div className="p-6 rounded-3xl bg-slate-900 text-white shadow-xl space-y-4 scroll-3d-card-cyan border border-slate-800">
+          <div className="p-5 sm:p-6 rounded-3xl bg-slate-900 text-white shadow-xl space-y-4 scroll-3d-card-cyan border border-slate-800">
             <h3 className="font-bold text-sm text-cyan-400 flex items-center gap-2">
-              <ShieldCheck className="h-5 w-5" /> Enterprise Security Safeguards
+              <ShieldCheck className="h-5 w-5 shrink-0" /> Enterprise Security Safeguards
             </h3>
             <p className="text-xs text-slate-400 leading-relaxed">
               Your organizational credentials are protected by bank-grade encryption and granular permission hierarchies.
@@ -102,26 +102,26 @@ export function AuthView({ onNavigateToDashboard }: AuthViewProps) {
 
         {/* Dedicated Sign In / Sign Up Form */}
         <div className="lg:col-span-8">
-          <div className="p-8 rounded-3xl bg-white border border-slate-200 shadow-xl space-y-6 scroll-3d-card">
+          <div className="p-4 sm:p-6 md:p-8 rounded-3xl bg-white border border-slate-200 shadow-xl space-y-6 scroll-3d-card">
             
             {/* Form Mode Selector Header */}
-            <div className="flex items-center justify-between border-b border-slate-100 pb-4">
+            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 border-b border-slate-100 pb-4">
               <div className="flex items-center gap-2">
-                <div className="p-2 rounded-xl bg-purple-100 text-purple-600">
+                <div className="p-2 rounded-xl bg-purple-100 text-purple-600 shrink-0">
                   <KeyRound className="h-5 w-5" />
                 </div>
                 <div>
-                  <h2 className="text-lg font-bold text-slate-900">
+                  <h2 className="text-base sm:text-lg font-bold text-slate-900">
                     {mode === "login" ? "Sign In to Your Workspace" : "Register Enterprise Organization"}
                   </h2>
                   <p className="text-xs text-slate-400">Enter your credentials below</p>
                 </div>
               </div>
 
-              <div className="flex bg-slate-100 p-1 rounded-xl">
+              <div className="flex bg-slate-100 p-1 rounded-xl w-full sm:w-auto">
                 <button
                   onClick={() => setMode("login")}
-                  className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer ${
+                  className={`flex-1 sm:flex-none px-3 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer ${
                     mode === "login" ? "bg-white text-purple-700 shadow-sm" : "text-slate-500"
                   }`}
                 >
@@ -129,7 +129,7 @@ export function AuthView({ onNavigateToDashboard }: AuthViewProps) {
                 </button>
                 <button
                   onClick={() => setMode("signup")}
-                  className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer ${
+                  className={`flex-1 sm:flex-none px-3 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer ${
                     mode === "signup" ? "bg-white text-purple-700 shadow-sm" : "text-slate-500"
                   }`}
                 >

@@ -100,7 +100,7 @@ export function DashboardView({ onNavigate }: DashboardViewProps) {
       </div>
 
       {/* Stats Grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
         {stats.map((stat, i) => {
           const Icon = stat.icon
           return (
@@ -110,23 +110,23 @@ export function DashboardView({ onNavigate }: DashboardViewProps) {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.3, delay: i * 0.05 }}
               className={cn(
-                "glass-card glass-card-hover p-5 rounded-2xl flex flex-col justify-between border-slate-100 scroll-3d-card",
+                "glass-card glass-card-hover p-4 sm:p-5 rounded-2xl flex flex-col justify-between border-slate-100 scroll-3d-card",
                 stat.border
               )}
             >
-              <div className="flex items-center justify-between">
-                <span className="text-xs font-semibold text-neutral-500 tracking-wider uppercase">
+              <div className="flex items-center justify-between gap-2">
+                <span className="text-xs font-semibold text-neutral-500 tracking-wider uppercase truncate">
                   {stat.label}
                 </span>
-                <div className={cn("p-2 rounded-xl", stat.bg)}>
+                <div className={cn("p-2 rounded-xl shrink-0", stat.bg)}>
                   <Icon className={cn("h-4 w-4", stat.color)} />
                 </div>
               </div>
-              <div className="mt-4 flex items-baseline justify-between">
-                <span className="text-2xl font-bold text-neutral-850 font-mono">
+              <div className="mt-4 flex items-baseline justify-between gap-2">
+                <span className="text-2xl font-bold text-neutral-850 font-mono truncate">
                   {stat.value.toLocaleString()}
                 </span>
-                <span className="text-xs font-mono text-green-600 font-bold">
+                <span className="text-xs font-mono text-green-600 font-bold shrink-0">
                   {stat.change}
                 </span>
               </div>
@@ -152,7 +152,7 @@ export function DashboardView({ onNavigate }: DashboardViewProps) {
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.2, delay: i * 0.05 }}
               className={cn(
-                "glass-card p-5 rounded-2xl text-left border border-slate-200/80 bg-gradient-to-br flex items-center justify-between group cursor-pointer",
+                "glass-card p-4 sm:p-5 rounded-2xl text-left border border-slate-200/80 bg-gradient-to-br flex items-center justify-between group cursor-pointer",
                 action.color
               )}
             >
@@ -162,7 +162,7 @@ export function DashboardView({ onNavigate }: DashboardViewProps) {
                 </h3>
                 <p className="text-xs text-neutral-500 mt-1">{action.desc}</p>
               </div>
-              <ArrowUpRight className="h-5 w-5 text-neutral-400 group-hover:text-purple-600 group-hover:translate-x-1 group-hover:-translate-y-1 transition-all" />
+              <ArrowUpRight className="h-5 w-5 text-neutral-400 group-hover:text-purple-600 group-hover:translate-x-1 group-hover:-translate-y-1 transition-all shrink-0 ml-2" />
             </motion.button>
           ))}
         </div>
@@ -171,8 +171,8 @@ export function DashboardView({ onNavigate }: DashboardViewProps) {
       {/* Main Charts & Timeline Section */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         {/* Productivity Analytics Chart */}
-        <div className="glass-panel p-6 rounded-2xl lg:col-span-2 border-slate-200/80 space-y-4">
-          <div className="flex items-center justify-between">
+        <div className="glass-panel p-4 sm:p-6 rounded-2xl lg:col-span-2 border-slate-200/80 space-y-4">
+          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2">
             <div>
               <h3 className="font-bold text-neutral-850 flex items-center gap-2">
                 <Activity className="h-4 w-4 text-purple-600" />
@@ -187,9 +187,9 @@ export function DashboardView({ onNavigate }: DashboardViewProps) {
             </div>
           </div>
 
-          <div className="h-80 w-full mt-4 min-h-[280px] relative">
-            <ResponsiveContainer width="100%" height="100%" minHeight={250}>
-              <AreaChart data={chartData} margin={{ top: 10, right: 10, left: -20, bottom: 0 }}>
+          <div className="h-72 sm:h-80 w-full mt-4 min-h-[250px] relative">
+            <ResponsiveContainer width="100%" height="100%" minHeight={240}>
+              <AreaChart data={chartData} margin={{ top: 10, right: 10, left: -15, bottom: 0 }}>
                 <defs>
                   <linearGradient id="colorAI" x1="0" y1="0" x2="0" y2="1">
                     <stop offset="5%" stopColor="#a855f7" stopOpacity={0.2}/>
