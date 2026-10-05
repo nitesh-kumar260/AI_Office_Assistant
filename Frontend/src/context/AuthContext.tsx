@@ -38,7 +38,7 @@ const DEFAULT_WORKSPACES: Workspace[] = [
   { id: "ws-3", name: "HR & Talent Compliance", memberCount: 8, tier: "Professional", code: "ORN-HR-14" },
 ]
 
-const DEFAULT_USER: UserProfile = {
+export const DEFAULT_USER: UserProfile = {
   id: "usr-admin-001",
   name: "Enterprise Admin",
   email: "admin@ornitech.ai",
@@ -56,7 +56,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     if (saved) {
       try { return JSON.parse(saved) } catch (e) { console.error(e) }
     }
-    return DEFAULT_USER
+    return null
   })
 
   const [workspace, setWorkspaceState] = useState<Workspace>(() => {

@@ -17,9 +17,11 @@ import { RAGSearchView } from "./components/views/RAGSearchView"
 import { AuthView } from "./components/views/AuthView"
 import { Upload_doc } from "./components/views/Upload_doc"
 import { Extract_Info } from "./components/views/Extract_Info"
+import { LandingPageView } from "./components/views/LandingPageView"
+import { AuthModal } from "./components/auth/AuthModal"
 import { DocChatbotDrawer } from "./components/DocChatbotDrawer"
 import { AuthProvider, useAuth } from "./context/AuthContext"
-import { Bell, Building2, LogIn, Menu, Bot, Sparkles } from "lucide-react"
+import { Bell, Building2, Menu, Bot, Sparkles, LogOut } from "lucide-react"
 import { cn } from "@/lib/utils"
 
 function AppContent() {
@@ -29,7 +31,7 @@ function AppContent() {
   const [isChatbotOpen, setIsChatbotOpen] = useState(false)
   const [isHeaderScrolled, setIsHeaderScrolled] = useState(false)
   const mainRef = useRef<HTMLDivElement>(null)
-  const { user, workspace } = useAuth()
+  const { user, workspace, setIsAuthModalOpen, logout } = useAuth()
 
   useEffect(() => {
     const mainEl = mainRef.current
@@ -46,6 +48,16 @@ function AppContent() {
     mainEl.addEventListener("scroll", handleScroll)
     return () => mainEl.removeEventListener("scroll", handleScroll)
   }, [])
+
+  // Authentication Gate: Unauthenticated users see ONLY the Landing Page + Auth Modal
+  if (!user) {
+    return (
+      <>
+        <LandingPageView onOpenAuth={() => setIsAuthModalOpen(true)} />
+        <AuthModal />
+      </>
+    )
+  }
 
   const handleSelectDocForChat = (docName: string) => {
     setInitialSelectedDoc(docName)
@@ -163,11 +175,12 @@ function AppContent() {
             
             <div className="h-8 w-px bg-slate-200 hidden sm:block" />
 
-            {/* Auth / Account Profile Button */}
-            {user ? (
+            {/* User Profile & Logout */}
+            <div className="flex items-center gap-1 sm:gap-2">
               <button 
                 onClick={() => setCurrentView("auth")}
                 className="flex items-center gap-2.5 p-1 rounded-xl hover:bg-slate-100 transition-all text-left cursor-pointer shrink-0"
+                title="Account Settings & SSO"
               >
                 <div className="flex flex-col text-right hidden md:flex">
                   <span className="text-xs font-semibold text-neutral-800 flex items-center justify-end gap-1">
@@ -183,14 +196,15 @@ function AppContent() {
                   {user.avatar}
                 </div>
               </button>
-            ) : (
+
               <button
-                onClick={() => setCurrentView("auth")}
-                className="px-3 py-1.5 sm:px-3.5 sm:py-2 rounded-xl bg-purple-600 hover:bg-purple-700 text-white text-xs font-bold shadow-md shadow-purple-500/20 flex items-center gap-1.5 cursor-pointer shrink-0"
+                onClick={logout}
+                className="p-1.5 sm:p-2 rounded-xl text-slate-500 hover:text-rose-600 hover:bg-rose-50 transition-colors cursor-pointer shrink-0"
+                title="Log Out to Landing Page"
               >
-                <LogIn className="h-4 w-4 shrink-0" /> <span className="hidden sm:inline">Sign In / Sign Up</span>
+                <LogOut className="h-4.5 w-4.5" />
               </button>
-            )}
+            </div>
           </div>
         </header>
 
@@ -208,6 +222,9 @@ function AppContent() {
         isOpen={isChatbotOpen} 
         onClose={() => setIsChatbotOpen(false)} 
       />
+
+      {/* Auth Modal Overlay */}
+      <AuthModal />
     </div>
   )
 }
